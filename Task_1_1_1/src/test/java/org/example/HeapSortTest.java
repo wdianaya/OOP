@@ -32,4 +32,13 @@ class HeapSortTest {
         HeapSort.heapSort(input);
         assertArrayEquals(expected, input);
     }
+
+    @Test
+    void heapSortOnLongArray() {
+        int[] input = {2, 6, 5, 7, 18, 3, 89, 10, 4, 1, 15};
+        int[] expected = {1, 2, 3, 4, 5, 6, 7, 10, 15, 18, 89};
+
+        HeapSort.heapSort(input);
+        assertArrayEquals(expected, input);
+    }
 }
