@@ -12,12 +12,12 @@ public class HeapSort {
         int len = array.length;
 
         // строим кучу на исходном массиве с поддержанием max-элемента
-        for (int i = len/2 - 1; i >= 0; i--) {
+        for (int i = len / 2 - 1; i >= 0; i--) {
             siftDown(array, len, i);
         }
 
         // поочерёдно извлекаем элементы из кучи
-        for (int j = len -1; j >= 0; j--) {
+        for (int j = len - 1; j >= 0; j--) {
             // перемещаем при каждой операции корень в текущий конец массива
             int temp = array[0];
             array[0] = array[j];
@@ -32,13 +32,13 @@ public class HeapSort {
      * Просеивает элемент вниз по куче, чтобы восстановить свойство max-кучи
      *
      * @param array исходный массив
-     * @param len текущий размер кучи
-     * @param idx индекс элемента, который нужно просеять вниз
+     * @param len   текущий размер кучи
+     * @param idx   индекс элемента, который нужно просеять вниз
      */
     public static void siftDown(int[] array, int len, int idx) {
         // вычисление индекса дочерних элементов текущего array[idx]
-        int leftChild = 2* idx + 1;
-        int rightChild = 2* idx + 2;
+        int leftChild = 2 * idx + 1;
+        int rightChild = 2 * idx + 2;
 
         // индекс текущего наибольшего элемента
         int newIdx = idx;
@@ -62,12 +62,6 @@ public class HeapSort {
             siftDown(array, len, newIdx);
         }
 
-    }
-
-    public static void main(String[] args) {
-        int[] input = {5, 4, 3, 2, 1};
-        heapSort(input);
-        System.out.println(Arrays.toString(input));
     }
 }
 
