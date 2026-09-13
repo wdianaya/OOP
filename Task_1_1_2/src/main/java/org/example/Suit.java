@@ -1,6 +1,7 @@
 package org.example;
 
 public enum Suit {
+    // enum класс для мастей карт
     HEARTS("Червы"),
     DIAMONDS("Бубны"),
     CLUBS("Трефы"),

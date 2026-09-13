@@ -8,6 +8,7 @@ public class Deck {
     public int count;
     private List<Object[]> cards = new ArrayList<>();
 
+    // создание коллекции с картами, numberOfDecks - количсетво колод
     public Deck(int numberOfDecks) {
         for (int i = 0; i < numberOfDecks; i++) {
             for (Suit suit : Suit.values()) {
@@ -19,10 +20,12 @@ public class Deck {
         shuffle();
     }
 
+    // перемешать карты в колоде
     public void shuffle() {
         Collections.shuffle(cards);
     }
 
+    // взять одну карту
     public Object[] giveCard() {
         if (cards.isEmpty()) {
             throw new IllegalStateException("Колода пуста!");

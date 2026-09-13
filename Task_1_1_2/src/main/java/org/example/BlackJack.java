@@ -4,9 +4,10 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class BlackJack {
-    private int round;
-    private Deck deck;
+    private int round; // подсчёт раундов
+    private Deck deck; // созданиеи объекта колоды карт
 
+    // приветственное окно
     public void getStart() {
         System.out.println("Добро пожаловать в Блэкджек!");
 
@@ -32,6 +33,7 @@ public class BlackJack {
         dealer.takeCard((Rank)dealerCard2[1], (Suit)dealerCard2[0], false);
     }
 
+    // основной алгоритм игры
     public void main_play() {
         getStart();
         Scanner scanner = new Scanner(System.in);

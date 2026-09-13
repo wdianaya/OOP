@@ -83,10 +83,12 @@ public abstract class Player {
         return calculateScore(true);
     }
 
+    // получить текущие очки по раундам
     public int getScore() {
         return score;
     }
 
+    // увеличить количество очков за раунд
     public void winRound() {
         this.score++;
     }

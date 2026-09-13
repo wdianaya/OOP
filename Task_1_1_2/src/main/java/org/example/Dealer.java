@@ -1,6 +1,9 @@
 package org.example;
 
 public class Dealer extends Player{
+    // класс дилера
+
+    // проверка что текущая сумма очков с карт меньше 17
     public boolean shouldTakeCard() {
         return getFullSum() < 17;
     }

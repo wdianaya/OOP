@@ -1,6 +1,7 @@
 package org.example;
 
 public enum Rank {
+    // enum класс для значений карт и их ценности
     TWO(2, "Двойка"),
     THREE(3, "Тройка"),
     FOUR(4, "Четвёерка"),
