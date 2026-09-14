@@ -5,7 +5,6 @@ import java.util.List;
 
 public abstract class Player {
     protected List<Object[]> myCards = new ArrayList<>(); // [Rank, Suit, isOpen] коллекция для хранения карт игроков
-    protected int score; // количество выигранных раундов
 
     // взятие карты для дилера
     public void takeCard(Rank rank, Suit suit, boolean isOpen) {
@@ -33,6 +32,7 @@ public abstract class Player {
                 continue;
             }
             sum += rank.getScore();
+            // увеличиваем количество тузов
             if (rank == Rank.ACE) {
                 acesCount++;
             }
@@ -46,6 +46,8 @@ public abstract class Player {
     }
 
     // вывести список текущих карт
+    // onlyOpen=true выводит только открытые карты
+    // onlyOpen=false выводит все карты
     public String printCard(boolean onlyOpen) {
         StringBuilder str = new StringBuilder("[");
         int count=0;
@@ -54,7 +56,8 @@ public abstract class Player {
             Rank rank = (Rank)cardData[1];
             boolean isOpen = (boolean)cardData[2];
 
-            if (onlyOpen && isOpen) {
+            // выводим только открытые и сама карта закрыта (isOpen=false)
+            if (onlyOpen && !isOpen) {
                 str.append("<закрытая карта>");
             } else {
                 str.append(rank.getName());
@@ -81,15 +84,5 @@ public abstract class Player {
     // получение суммы только открытых карт (для дилера во время хода игрока)
     public int getVisibleSum() {
         return calculateScore(true);
-    }
-
-    // получить текущие очки по раундам
-    public int getScore() {
-        return score;
-    }
-
-    // увеличить количество очков за раунд
-    public void winRound() {
-        this.score++;
     }
 }

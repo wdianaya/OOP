@@ -27,7 +27,7 @@ public class Deck {
 
     // взять одну карту
     public Object[] giveCard() {
-        if (cards.isEmpty()) {
+        if (cards.isEmpty()) { // если на каком-то из раундов закончатся карты
             throw new IllegalStateException("Колода пуста!");
         }
         return cards.remove(cards.size() - 1);

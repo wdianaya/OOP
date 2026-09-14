@@ -24,10 +24,12 @@ public enum Rank {
         this.name = name;
     }
 
+    // вернуть численной значение карты
     public int getScore() {
         return score;
     }
 
+    // вернуть название карты
     public String getName() {
         return name;
     }

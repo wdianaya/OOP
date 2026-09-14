@@ -13,6 +13,7 @@ public enum Suit {
         this.symbol = symbol;
     }
 
+    // вернуть название масти
     public String getSymbol() {
         return symbol;
     }
