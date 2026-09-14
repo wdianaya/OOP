@@ -11,7 +11,7 @@ public abstract class Player {
         myCards.add(new Object[] {suit, rank, isOpen});
     }
 
-    // Взятие карты для игрока
+    // взятие карты для игрока
     public void takeCard(Rank rank, Suit suit) {
         takeCard(rank, suit, true);
     }
@@ -56,7 +56,7 @@ public abstract class Player {
             Rank rank = (Rank)cardData[1];
             boolean isOpen = (boolean)cardData[2];
 
-            // выводим только открытые и сама карта закрыта (isOpen=false)
+            // если выводим только открытые и сама карта закрыта (isOpen=false)
             if (onlyOpen && !isOpen) {
                 str.append("<закрытая карта>");
             } else {
