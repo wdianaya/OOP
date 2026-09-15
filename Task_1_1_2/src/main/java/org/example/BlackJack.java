@@ -10,7 +10,6 @@ import java.util.Scanner;
 public class BlackJack {
     private int round; // подсчёт раундов
     private Deck deck; // созданиеи объекта колоды карт
-    Scanner scanner = new Scanner(System.in); // объект класса Scanner для считывания ввода игрока
 
     /**
      * Выводит преветственное окно и создаёт колоду для игры.
@@ -59,7 +58,7 @@ public class BlackJack {
     /**
      * Реализация хода игрока.
      */
-    public Utils gamblerAction(Gambler gambler, Dealer dealer) {
+    public Utils gamblerAction(Gambler gambler, Dealer dealer, Scanner scanner) {
         int num; // num - ввод пользователя (1 или 0)
         int  score; // score - сумма очков текущих карт в коллекции
         score = gambler.getFullSum(); // перерасчитываем общую сумму очков
@@ -93,7 +92,7 @@ public class BlackJack {
                             + " " + suit.getSymbol()
                             + " (" + rank.getScore()
                             + ")");
-                    score = gambler.getFullSum();
+                    gambler.getFullSum();
                     break;
                 default:
                     // если было введено число отличное от 0 и 1
@@ -128,7 +127,7 @@ public class BlackJack {
                     + rank0.getScore() + ")");
             // делаем перерасчёт общий суммы с учетом открытой карты
             int score = dealer.getVisibleSum();
-            Utils curRes = checkedRes(score);
+            checkedRes(score);
 
             printLists(dealer, gambler);
         }
@@ -170,6 +169,7 @@ public class BlackJack {
         getStart();
         int gamblerScore = 0;
         int dealerScore = 0;
+        Scanner scanner = new Scanner(System.in); // объект класса Scanner для считывания ввода игрока
         Utils result; // WIN | FAIL | CONT
 
         while (true) {
@@ -189,7 +189,7 @@ public class BlackJack {
             printLists(dealer, gambler);
 
             // result содержит информацию о результате хода игрока
-            result = gamblerAction(gambler, dealer);
+            result = gamblerAction(gambler, dealer, scanner);
 
             // обработка результатов хода игрока
             if (result == Utils.WIN) {
