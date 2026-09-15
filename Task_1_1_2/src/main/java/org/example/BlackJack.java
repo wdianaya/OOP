@@ -60,7 +60,8 @@ public class BlackJack {
      * Реализация хода игрока.
      */
     public Utils gamblerAction(Gambler gambler, Dealer dealer) {
-        int num, score; // num - ввод пользователя (1 или 0), score - сумма очков текущих карт в коллекции
+        int num; // num - ввод пользователя (1 или 0)
+        int  score; // score - сумма очков текущих карт в коллекции
         score = gambler.getFullSum(); // перерасчитываем общую сумму очков
         Utils curRes = checkedRes(score); // оценка текущей суммы очков относительно 21
         System.out.println("Ваш ход\n--------");
@@ -70,7 +71,8 @@ public class BlackJack {
             // если игрок вводит не число - заходим в цикл
             while (!scanner.hasNextInt()) {
                 scanner.next();
-                System.out.println("Ошибка ввода. Введите “1”, чтобы взять карту, и “0”, чтобы остановиться ...");
+                System.out.println("Ошибка ввода. Введите “1”,"
+                        + " чтобы взять карту, и “0”, чтобы остановиться ...");
             }
             // считываем ввод
             num = scanner.nextInt();
@@ -155,8 +157,10 @@ public class BlackJack {
      * Выводит текущий набор карт у игрока и дилера.
      */
     public void printLists(Dealer dealer, Gambler gambler) {
-        System.out.println("    Ваши карты: " + gambler.printCard(false) + " -> " + gambler.getFullSum());
-        System.out.println("    Карты дилера: " + dealer.printCard(true) + " -> " + dealer.getVisibleSum());
+        System.out.println("    Ваши карты: " + gambler.printCard(false)
+                + " -> " + gambler.getFullSum());
+        System.out.println("    Карты дилера: " + dealer.printCard(true)
+                + " -> " + dealer.getVisibleSum());
     }
 
     /**
@@ -164,8 +168,8 @@ public class BlackJack {
      */
     public void main_play() {
         getStart();
-        int gambler_score = 0;
-        int dealer_score = 0;
+        int gamblerScore = 0;
+        int dealerScore = 0;
         Utils result; // WIN | FAIL | CONT
 
         while (true) {
@@ -189,10 +193,10 @@ public class BlackJack {
 
             // обработка результатов хода игрока
             if (result == Utils.WIN) {
-                gambler_score++;
+                gamblerScore++;
                 System.out.println("У вас блекджек! Вы выиграли раунд!");
             } else if (result == Utils.FAIL) {
-                dealer_score++;
+                dealerScore++;
                 System.out.println("У вас перебор! Вы проиграли раунд :(.");
             } else {
                 Utils dealerResult = dealerActions(dealer, gambler);
@@ -202,17 +206,18 @@ public class BlackJack {
 
                 // сравнение очков (если у дилера перебор > 21 или у игрока больше)
                 if (dealerSum > 21 || gamblerSum > dealerSum) {
-                    gambler_score++;
+                    gamblerScore++;
                     System.out.println("Вы выиграли раунд!");
                 } else if (gamblerSum < dealerSum) {
-                    dealer_score++;
+                    dealerScore++;
                     System.out.println("Дилер выиграл раунд!");
                 } else {
                     System.out.println("Ничья в раунде!");
                 }
             }
 
-            System.out.println("Текущий счёт - Игрок: " + gambler_score + " | Дилер: " + dealer_score + "\n");
+            System.out.println("Текущий счёт - Игрок: "
+                    + gamblerScore + " | Дилер: " + dealerScore + "\n");
 
             // запрос на следующий раунд
             System.out.println("Хотите сыграть еще раунд? (Введите 1 - продолжить, 0 - выйти):");

@@ -11,7 +11,7 @@ public abstract class Player {
     /**
      * Коллекция для хранения карт игрока в формате [Suit, Rank, isOpen].
      */
-    protected List<Object[]> myCards = new ArrayList<>(); // [Rank, Suit, isOpen] коллекция для хранения карт игроков
+    protected List<Object[]> myCards = new ArrayList<>();
 
     /**
      * Добавляет карту в руку игрока с указанием статуса её видимости.
@@ -57,7 +57,8 @@ public abstract class Player {
                 acesCount++;
             }
         }
-        // если в колоде присутствовали тузы и значение привысило 21 - делаем вклад тузов равный 1 в общую сумму
+        // если в колоде присутствовали тузы и значение привысило 21,
+        // делаем вклад тузов равный 1 в общую сумму
         while (sum > 21 && acesCount > 0) {
             sum -= 10;
             acesCount--;

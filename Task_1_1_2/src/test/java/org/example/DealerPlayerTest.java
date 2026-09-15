@@ -1,11 +1,11 @@
 package org.example;
 
-import org.junit.jupiter.api.Test;
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.List;
+import org.junit.jupiter.api.Test;
 
 class DealerPlayerTest {
 
@@ -23,8 +23,8 @@ class DealerPlayerTest {
         gambler.takeCard(Rank.ACE, Suit.HEARTS, true); // 11
         gambler.takeCard(Rank.NINE, Suit.DIAMONDS, true); // 9 (sum 20)
         assertEquals(20, gambler.getFullSum());
-
-        gambler.takeCard(Rank.FIVE, Suit.CLUBS, true); // sum 25 -> туз пересчитывается в 1 -> 1 + 9 + 5 = 15
+        // sum 25 -> туз пересчитывается в 1 -> 1 + 9 + 5 = 15
+        gambler.takeCard(Rank.FIVE, Suit.CLUBS, true);
         assertEquals(15, gambler.getFullSum());
     }
 
