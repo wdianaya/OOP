@@ -4,11 +4,19 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Класс, представляющий колоду игральных карт.
+ * Позволяет инициализировать колоду (одну или несколько стандартных колод по 52 карты),
+ * перемешивать их и выдавать карты по одной.
+ */
 public class Deck {
-    public int count;
     private List<Object[]> cards = new ArrayList<>();
 
-    // создание коллекции с картами, numberOfDecks - количсетво колод
+    /**
+     * Создает колоду карт указанного размера (количество стандартных колод по 52 карты).
+     *
+     * @param numberOfDecks количество стандартных колод, объединяемых в одну
+     */
     public Deck(int numberOfDecks) {
         for (int i = 0; i < numberOfDecks; i++) {
             for (Suit suit : Suit.values()) {
@@ -20,12 +28,19 @@ public class Deck {
         shuffle();
     }
 
-    // перемешать карты в колоде
+    /**
+     * Перемещивает карты в колоде
+     */
     public void shuffle() {
         Collections.shuffle(cards);
     }
 
-    // взять одну карту
+    /**
+     * Выдает верхнюю карту из колоды и удаляет её из неё.
+     *
+     * @return массив объектов, содержащий масть и достоинство карты
+     * @throws IllegalStateException если колода опустела
+     */
     public Object[] giveCard() {
         if (cards.isEmpty()) { // если на каком-то из раундов закончатся карты
             throw new IllegalStateException("Колода пуста!");

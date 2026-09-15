@@ -1,17 +1,20 @@
 package org.example;
 
-import jdk.jshell.execution.Util;
-
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
+/**
+ * Класс, реализующий игровую логику блэкджека.
+ */
 public class BlackJack {
     private int round; // подсчёт раундов
     private Deck deck; // созданиеи объекта колоды карт
     Scanner scanner = new Scanner(System.in); // объект класса Scanner для считывания ввода игрока
 
-    // приветственное окно
+    /**
+     * Выводит преветственное окно и создаёт колоду для игры.
+     */
     public void getStart() {
         System.out.println("Добро пожаловать в Блэкджек!");
 
@@ -21,7 +24,9 @@ public class BlackJack {
         this.deck = new Deck(count);
     }
 
-    // реализация первой раздачи
+    /**
+     * Реализовывает первую раздачу в игре.
+     */
     private void initialDeal(Dealer dealer, Gambler gambler) {
         // раздача карт игроку
         for (int i = 0; i < 2; i++) {
@@ -38,7 +43,9 @@ public class BlackJack {
         dealer.takeCard((Rank) dealerCard2[1], (Suit) dealerCard2[0], false);
     }
 
-    // промежуточная проверка общей суммы очков
+    /**
+     * Выводит промежуточную оценку текущей суммы очков.
+     */
     public Utils checkedRes(int score) {
         if (score == 21) {
             return Utils.WIN;
@@ -49,7 +56,9 @@ public class BlackJack {
         return Utils.CONT;
     }
 
-    // ход игрока
+    /**
+     * Реализация хода игрока.
+     */
     public Utils gamblerAction(Gambler gambler, Dealer dealer) {
         int num, score; // num - ввод пользователя (1 или 0), score - сумма очков текущих карт в коллекции
         score = gambler.getFullSum(); // перерасчитываем общую сумму очков
@@ -77,10 +86,11 @@ public class BlackJack {
                     Suit suit = (Suit) cardData[0];
                     Rank rank = (Rank) cardData[1];
                     gambler.takeCard(rank, suit);
-                    System.out.println("Вы открыли карту " +
-                            rank.getName() +
-                            " " + suit.getSymbol() +
-                            " (" + rank.getScore() + ")");
+                    System.out.println("Вы открыли карту "
+                            + rank.getName()
+                            + " " + suit.getSymbol()
+                            + " (" + rank.getScore()
+                            + ")");
                     score = gambler.getFullSum();
                     break;
                 default:
@@ -99,7 +109,9 @@ public class BlackJack {
         return curRes;
     }
 
-    // ход дилера
+    /**
+     * Реализация хода дилера.
+     */
     public Utils dealerActions(Dealer dealer, Gambler gambler) {
         System.out.println("Ход Дилера\n--------");
         // открываем закрытую карту
@@ -108,10 +120,10 @@ public class BlackJack {
         if (!openCard.isEmpty()) {
             Rank rank0 = (Rank) openCard.get(0);
             Suit suit0 = (Suit) openCard.get(1);
-            System.out.println("Дилер открывает закрытую карту " +
-                    rank0.getName() +
-                    " " + suit0.getSymbol() + " (" +
-                    rank0.getScore() + ")");
+            System.out.println("Дилер открывает закрытую карту "
+                    + rank0.getName()
+                    + " " + suit0.getSymbol() + " ("
+                    + rank0.getScore() + ")");
             // делаем перерасчёт общий суммы с учетом открытой карты
             int score = dealer.getVisibleSum();
             Utils curRes = checkedRes(score);
@@ -127,10 +139,10 @@ public class BlackJack {
             Suit suit = (Suit) cardData[0];
             Rank rank = (Rank) cardData[1];
 
-            System.out.println("Дилер открывает карту " +
-                    rank.getName() +
-                    " " + suit.getSymbol() +
-                    " (" + rank.getScore() + ")");
+            System.out.println("Дилер открывает карту "
+                    + rank.getName()
+                    + " " + suit.getSymbol()
+                    + " (" + rank.getScore() + ")");
             dealer.takeCard(rank, suit, true);
             score = dealer.getFullSum();
             curRes = checkedRes(score);
@@ -139,13 +151,17 @@ public class BlackJack {
         return curRes;
     }
 
-    // вывести текущий набор карт
+    /**
+     * Выводит текущий набор карт у игрока и дилера.
+     */
     public void printLists(Dealer dealer, Gambler gambler) {
         System.out.println("    Ваши карты: " + gambler.printCard(false) + " -> " + gambler.getFullSum());
         System.out.println("    Карты дилера: " + dealer.printCard(true) + " -> " + dealer.getVisibleSum());
     }
 
-    // основной алгоритм игры
+    /**
+     * Запускает основной цикл игры.
+     */
     public void main_play() {
         getStart();
         int gambler_score = 0;

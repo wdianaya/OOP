@@ -3,22 +3,42 @@ package org.example;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Абстрактный класс, представляющий базового игрока в блэкджек.
+ * Содержит общую логику хранения карт, подсчета очков и вывода информации.
+ */
 public abstract class Player {
+    /**
+     * Коллекция для хранения карт игрока в формате [Suit, Rank, isOpen].
+     */
     protected List<Object[]> myCards = new ArrayList<>(); // [Rank, Suit, isOpen] коллекция для хранения карт игроков
 
-    // взятие карты для дилера
+    /**
+     * Добавляет карту в руку игрока с указанием статуса её видимости.
+     *
+     * @param rank   достоинство карты
+     * @param suit   масть карты
+     * @param isOpen статус видимости (true — открыта, false — закрыта)
+     */
     public void takeCard(Rank rank, Suit suit, boolean isOpen) {
         myCards.add(new Object[]{suit, rank, isOpen});
     }
 
-    // взятие карты для игрока
+    /**
+     * Добавляет открытую карту в руку игрока (по умолчанию isOpen = true).
+     *
+     * @param rank достоинство карты
+     * @param suit масть карты
+     */
     public void takeCard(Rank rank, Suit suit) {
         takeCard(rank, suit, true);
     }
 
-    // расчёт очков с текущих карт в коллекции
-    // onlyOpen=true считает только открытые карты (нужно для показа очков дилера игроку)
-    // onlyOpen=false считает абсолютно все карты
+    /**
+     * Вычисляет общую сумму очков на руках с учетом правил для тузов.
+     * onlyOpen=true считает только открытые карты (нужно для показа очков дилера игроку)
+     * onlyOpen=false считает абсолютно все карты
+     */
     public int calculateScore(boolean onlyOpen) {
         int sum = 0; // общая сумма значений всех карт колоды
         int acesCount = 0; // счётчик тузов в текущей колоде
@@ -45,9 +65,11 @@ public abstract class Player {
         return sum;
     }
 
-    // вывести список текущих карт
-    // onlyOpen=true выводит только открытые карты
-    // onlyOpen=false выводит все карты
+    /**
+     * Формирует строковое представление текущего набора карт игрока.
+     * onlyOpen=true выводит только открытые карты
+     * onlyOpen=false выводит все карты
+     */
     public String printCard(boolean onlyOpen) {
         StringBuilder str = new StringBuilder("[");
         int count = 0;
@@ -76,12 +98,16 @@ public abstract class Player {
         return str.toString();
     }
 
-    // получение суммы значений для всех карт
+    /**
+     * Возвращает сумму значений всех карт (открытых и закрытых).
+     */
     public int getFullSum() {
         return calculateScore(false);
     }
 
-    // получение суммы только открытых карт (для дилера во время хода игрока)
+    /**
+     * Возвращает сумму только открытых карт (используется для дилера во время хода игрока).
+     */
     public int getVisibleSum() {
         return calculateScore(true);
     }

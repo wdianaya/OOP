@@ -1,7 +1,10 @@
 package org.example;
 
+/**
+ * Перечисление, представляющее масть игральной карты.
+ */
 public enum Suit {
-    // enum класс для мастей карт
+
     HEARTS("Червы"),
     DIAMONDS("Бубны"),
     CLUBS("Трефы"),
@@ -13,7 +16,9 @@ public enum Suit {
         this.symbol = symbol;
     }
 
-    // вернуть название масти
+    /**
+     * Возвращает название масти.
+     */
     public String getSymbol() {
         return symbol;
     }
