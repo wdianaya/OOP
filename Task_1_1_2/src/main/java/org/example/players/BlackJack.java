@@ -1,37 +1,22 @@
 package org.example.players;
 
 import java.util.List;
-import java.util.Random;
 import java.util.Scanner;
 
 import org.example.cards.Deck;
 import org.example.cards.Rank;
 import org.example.cards.Suit;
+import org.example.utils.ConsolePrinter;
 import org.example.utils.Utils;
 
 /**
  * Класс, реализующий игровую логику блэкджека.
  */
 public class BlackJack {
-    private int round; // подсчёт раундов
-    private Deck deck; // созданиеи объекта колоды карт
-
-    /**
-     * Выводит преветственное окно и создаёт колоду для игры.
-     */
-    public void getStart() {
-        System.out.println("Добро пожаловать в Блэкджек!");
-
-        // рандомно определяем количество колод в игре
-        Random random = new Random();
-        int count = random.nextInt(3) + 1;
-        this.deck = new Deck(count);
-    }
-
     /**
      * Реализовывает первую раздачу в игре.
      */
-    private void initialDeal(Dealer dealer, Gambler gambler) {
+    private void initialDeal(Dealer dealer, Gambler gambler, Deck deck) {
         // раздача карт игроку
         for (int i = 0; i < 2; i++) {
             Object[] cardData = deck.giveCard();
@@ -48,135 +33,21 @@ public class BlackJack {
     }
 
     /**
-     * Выводит промежуточную оценку текущей суммы очков.
-     */
-    public Utils checkedRes(int score) {
-        if (score == 21) {
-            return Utils.WIN;
-        }
-        if (score > 21) {
-            return Utils.FAIL;
-        }
-        return Utils.CONT;
-    }
-
-    /**
-     * Реализация хода игрока.
-     */
-    public Utils gamblerAction(Gambler gambler, Dealer dealer, Scanner scanner) {
-        int num; // num - ввод пользователя (1 или 0)
-        int  score; // score - сумма очков текущих карт в коллекции
-        score = gambler.getFullSum(); // перерасчитываем общую сумму очков
-        Utils curRes = checkedRes(score); // оценка текущей суммы очков относительно 21
-        System.out.println("Ваш ход\n--------");
-        while (curRes == Utils.CONT) {
-
-            System.out.println("Введите “1”, чтобы взять карту, и “0”, чтобы остановиться ...\n");
-            // если игрок вводит не число - заходим в цикл
-            while (!scanner.hasNextInt()) {
-                scanner.next();
-                System.out.println("Ошибка ввода. Введите “1”,"
-                        + " чтобы взять карту, и “0”, чтобы остановиться ...");
-            }
-            // считываем ввод
-            num = scanner.nextInt();
-            switch (num) {
-                case 0:
-                    // при выходе перерасчитываем итоговую сумму
-                    score = gambler.getFullSum();
-                    curRes = checkedRes(score);
-                    return curRes;
-                case 1:
-                    // реализация взятия карты и вывода сообщения о ней
-                    Object[] cardData = deck.giveCard();
-                    Suit suit = (Suit) cardData[0];
-                    Rank rank = (Rank) cardData[1];
-                    gambler.takeCard(rank, suit);
-                    System.out.println("Вы открыли карту "
-                            + rank.getName()
-                            + " " + suit.getSymbol()
-                            + " (" + rank.getScore()
-                            + ")");
-                    gambler.getFullSum();
-                    break;
-                default:
-                    // если было введено число отличное от 0 и 1
-                    System.out.println("Введено некорректное число.");
-                    continue;
-            }
-            // обновляем итоговую сумму, выводим состояние карт игрока и дилера
-            score = gambler.getFullSum();
-            printLists(dealer, gambler);
-
-            // проверка на блекджек и проигрыш
-            curRes = checkedRes(score);
-            System.out.println(score);
-        }
-        return curRes;
-    }
-
-    /**
-     * Реализация хода дилера.
-     */
-    public Utils dealerActions(Dealer dealer, Gambler gambler) {
-        System.out.println("Ход Дилера\n--------");
-        // открываем закрытую карту
-        List<Object> openCard = dealer.takeOpen();
-
-        if (!openCard.isEmpty()) {
-            Rank rank0 = (Rank) openCard.get(0);
-            Suit suit0 = (Suit) openCard.get(1);
-            System.out.println("Дилер открывает закрытую карту "
-                    + rank0.getName()
-                    + " " + suit0.getSymbol() + " ("
-                    + rank0.getScore() + ")");
-            // делаем перерасчёт общий суммы с учетом открытой карты
-            int score = dealer.getVisibleSum();
-            checkedRes(score);
-
-            printLists(dealer, gambler);
-        }
-        int score = dealer.getVisibleSum();
-        Utils curRes = checkedRes(score);
-
-        // дилер берет карты пока сумма не привысит 17
-        while (dealer.shouldTakeCard()) {
-            Object[] cardData = deck.giveCard();
-            Suit suit = (Suit) cardData[0];
-            Rank rank = (Rank) cardData[1];
-
-            System.out.println("Дилер открывает карту "
-                    + rank.getName()
-                    + " " + suit.getSymbol()
-                    + " (" + rank.getScore() + ")");
-            dealer.takeCard(rank, suit, true);
-            score = dealer.getFullSum();
-            curRes = checkedRes(score);
-            printLists(dealer, gambler);
-        }
-        return curRes;
-    }
-
-    /**
-     * Выводит текущий набор карт у игрока и дилера.
-     */
-    public void printLists(Dealer dealer, Gambler gambler) {
-        System.out.println("    Ваши карты: " + gambler.printCard(false)
-                + " -> " + gambler.getFullSum());
-        System.out.println("    Карты дилера: " + dealer.printCard(true)
-                + " -> " + dealer.getVisibleSum());
-    }
-
-    /**
      * Запускает основной цикл игры.
      */
     public void main_play() {
-        getStart();
+        System.out.println("Добро пожаловать в Блэкджек!");
+
+        Deck deck = new Deck(); // создание объекта колоды карт
+
+        int round = 0; // подсчёт раундов
+
         int gamblerScore = 0;
         int dealerScore = 0;
 
         // объект класса Scanner для считывания ввода игрока
         Scanner scanner = new Scanner(System.in);
+
         Utils result; // WIN | FAIL | CONT
 
         while (true) {
@@ -188,15 +59,15 @@ public class BlackJack {
             Gambler gambler = new Gambler();
 
             // реализуем первую раздачу карт
-            initialDeal(dealer, gambler);
+            initialDeal(dealer, gambler, deck);
 
             System.out.println("Дилер раздал карты");
 
             // выводим список текущих карт игрока и дилера
-            printLists(dealer, gambler);
+            ConsolePrinter.printLists(dealer, gambler);
 
             // result содержит информацию о результате хода игрока
-            result = gamblerAction(gambler, dealer, scanner);
+            result = gambler.gamblerAction(gambler, dealer, scanner, deck);
 
             // обработка результатов хода игрока
             if (result == Utils.WIN) {
@@ -206,7 +77,7 @@ public class BlackJack {
                 dealerScore++;
                 System.out.println("У вас перебор! Вы проиграли раунд :(.");
             } else {
-                Utils dealerResult = dealerActions(dealer, gambler);
+                Utils dealerResult = dealer.dealerActions(dealer, gambler, deck);
 
                 int gamblerSum = gambler.getFullSum();
                 int dealerSum = dealer.getFullSum();
