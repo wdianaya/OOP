@@ -1,4 +1,4 @@
-package org.example;
+package org.example.players;
 
 /**
  * Класс, для создания объекта игрока.

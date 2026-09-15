@@ -1,4 +1,4 @@
-package org.example;
+package org.example.cards;
 
 import java.util.ArrayList;
 import java.util.Collections;

@@ -1,5 +1,7 @@
 package org.example;
 
+import org.example.players.BlackJack;
+
 /**
  * Главный класс для запуска программы.
  */

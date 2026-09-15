@@ -1,4 +1,4 @@
-package org.example;
+package org.example.utils;
 
 /**
  * Перечисление, определяющее возможные исходы или статусы

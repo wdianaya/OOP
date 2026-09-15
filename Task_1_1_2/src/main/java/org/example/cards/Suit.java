@@ -1,4 +1,4 @@
-package org.example;
+package org.example.cards;
 
 /**
  * Перечисление, представляющее масть игральной карты.

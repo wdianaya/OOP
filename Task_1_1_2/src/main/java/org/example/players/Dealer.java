@@ -1,4 +1,7 @@
-package org.example;
+package org.example.players;
+
+import org.example.cards.Rank;
+import org.example.cards.Suit;
 
 import java.util.List;
 
