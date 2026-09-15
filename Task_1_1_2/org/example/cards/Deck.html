@@ -89,9 +89,13 @@ loadScripts(document, 'script');</script>
 <div class="summary-table two-column-summary">
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
-<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(int)" class="member-name-link">Deck</a><wbr>(int&nbsp;numberOfDecks)</code></div>
+<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E()" class="member-name-link">Deck</a>()</code></div>
 <div class="col-last even-row-color">
-<div class="block">Создает колоду карт указанного размера (количество стандартных колод по 52 карты).</div>
+<div class="block">Конструктор по умолчанию: генерирует случайное количество колод (от 1 до 3)</div>
+</div>
+<div class="col-constructor-name odd-row-color"><code><a href="#%3Cinit%3E(int)" class="member-name-link">Deck</a><wbr>(int&nbsp;count)</code></div>
+<div class="col-last odd-row-color">
+<div class="block">Конструктор с параметром (нужен для тестов)</div>
 </div>
 </div>
 </section>
@@ -113,8 +117,13 @@ loadScripts(document, 'script');</script>
 <div class="block">Выдает верхнюю карту из колоды и удаляет её из неё.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#shuffle()" class="member-name-link">shuffle</a>()</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#initializeDeck(int)" class="member-name-link">initializeDeck</a><wbr>(int&nbsp;numberOfDecks)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Создает колоду карт указанного размера (количество стандартных колод по 52 карты).</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#shuffle()" class="member-name-link">shuffle</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Перемещивает карты в колоде</div>
 </div>
 </div>
@@ -135,14 +144,17 @@ loadScripts(document, 'script');</script>
 <h2>Constructor Details</h2>
 <ul class="member-list">
 <li>
+<section class="detail" id="&lt;init&gt;()">
+<h3>Deck</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">Deck</span>()</div>
+<div class="block">Конструктор по умолчанию: генерирует случайное количество колод (от 1 до 3)</div>
+</section>
+</li>
+<li>
 <section class="detail" id="&lt;init&gt;(int)">
 <h3>Deck</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">Deck</span><wbr><span class="parameters">(int&nbsp;numberOfDecks)</span></div>
-<div class="block">Создает колоду карт указанного размера (количество стандартных колод по 52 карты).</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>numberOfDecks</code> - количество стандартных колод, объединяемых в одну</dd>
-</dl>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">Deck</span><wbr><span class="parameters">(int&nbsp;count)</span></div>
+<div class="block">Конструктор с параметром (нужен для тестов)</div>
 </section>
 </li>
 </ul>
@@ -153,6 +165,17 @@ loadScripts(document, 'script');</script>
 <section class="method-details" id="method-detail">
 <h2>Method Details</h2>
 <ul class="member-list">
+<li>
+<section class="detail" id="initializeDeck(int)">
+<h3>initializeDeck</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">initializeDeck</span><wbr><span class="parameters">(int&nbsp;numberOfDecks)</span></div>
+<div class="block">Создает колоду карт указанного размера (количество стандартных колод по 52 карты).</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>numberOfDecks</code> - количество стандартных колод, объединяемых в одну</dd>
+</dl>
+</section>
+</li>
 <li>
 <section class="detail" id="shuffle()">
 <h3>shuffle</h3>
