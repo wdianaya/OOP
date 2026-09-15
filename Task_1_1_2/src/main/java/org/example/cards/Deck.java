@@ -12,7 +12,7 @@ public class Deck {
     private final List<Object[]> cards = new ArrayList<>();
 
     /**
-     * Конструктор по умолчанию: генерирует случайное количество колод (от 1 до 3)
+     * Конструктор по умолчанию: генерирует случайное количество колод (от 1 до 3).
      */
     public Deck() {
         Random random = new Random();
@@ -21,7 +21,7 @@ public class Deck {
     }
 
     /**
-     * Конструктор с параметром (нужен для тестов)
+     * Конструктор с параметром (нужен для тестов).
      */
     public Deck(int count) {
         initializeDeck(count);
@@ -30,7 +30,7 @@ public class Deck {
     /**
      * Создает колоду карт указанного размера (количество стандартных колод по 52 карты).
      *
-     * @param numberOfDecks количество стандартных колод, объединяемых в одну
+     * @param numberOfDecks количество стандартных колод, объединяемых в одну.
      */
     public void initializeDeck(int numberOfDecks) {
         for (int i = 0; i < numberOfDecks; i++) {
@@ -44,7 +44,7 @@ public class Deck {
     }
 
     /**
-     * Перемещивает карты в колоде
+     * Перемещивает карты в колоде.
      */
     public void shuffle() {
         Collections.shuffle(cards);

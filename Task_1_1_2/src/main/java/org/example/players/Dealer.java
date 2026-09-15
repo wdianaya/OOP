@@ -1,12 +1,12 @@
 package org.example.players;
 
+import java.util.List;
+
 import org.example.cards.Deck;
 import org.example.cards.Rank;
 import org.example.cards.Suit;
 import org.example.utils.ConsolePrinter;
 import org.example.utils.Utils;
-
-import java.util.List;
 
 /**
  * Класс, реализовывающий логику дилера.
@@ -37,8 +37,8 @@ public class Dealer extends Player {
     }
 
     /**
-     * Добавляет карту дилеру с возможностью указать статус её видимости
-     * Переопределяет базовый метод класса Player для корректной раздачи открытых и закрытых карт
+     * Добавляет карту дилеру с возможностью указать статус её видимости.
+     * Переопределяет базовый метод класса Player для корректной раздачи открытых и закрытых карт.
      */
     @Override
     public void takeCard(Rank rank, Suit suit, boolean isOpen) {

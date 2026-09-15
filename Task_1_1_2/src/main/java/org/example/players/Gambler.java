@@ -17,7 +17,7 @@ public class Gambler extends Player {
      */
     public Utils gamblerAction(Gambler gambler, Dealer dealer, Scanner scanner, Deck deck) {
         int num; // num - ввод пользователя (1 или 0)
-        int  score; // score - сумма очков текущих карт в коллекции
+        int score; // score - сумма очков текущих карт в коллекции
         score = gambler.getFullSum(); // перерасчитываем общую сумму очков
         Utils curRes = Utils.checkedRes(score); // оценка текущей суммы очков относительно 21
         System.out.println("Ваш ход\n--------");
