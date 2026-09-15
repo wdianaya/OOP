@@ -1,1 +1,4 @@
 org.example
+org.example.cards
+org.example.players
+org.example.utils
