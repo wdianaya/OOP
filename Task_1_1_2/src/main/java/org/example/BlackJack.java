@@ -26,16 +26,16 @@ public class BlackJack {
         // раздача карт игроку
         for (int i = 0; i < 2; i++) {
             Object[] cardData = deck.giveCard();
-            gambler.takeCard((Rank)cardData[1], (Suit)cardData[0]);
+            gambler.takeCard((Rank) cardData[1], (Suit) cardData[0]);
         }
 
         // раздача карт дилеру
         Object[] dealerCard1 = deck.giveCard();
-        dealer.takeCard((Rank)dealerCard1[1], (Suit)dealerCard1[0], true);
+        dealer.takeCard((Rank) dealerCard1[1], (Suit) dealerCard1[0], true);
 
         Object[] dealerCard2 = deck.giveCard();
         // оставляем одну карту закрытой
-        dealer.takeCard((Rank)dealerCard2[1], (Suit)dealerCard2[0], false);
+        dealer.takeCard((Rank) dealerCard2[1], (Suit) dealerCard2[0], false);
     }
 
     // промежуточная проверка общей суммы очков
@@ -74,8 +74,8 @@ public class BlackJack {
                 case 1:
                     // реализация взятия карты и вывода сообщения о ней
                     Object[] cardData = deck.giveCard();
-                    Suit suit = (Suit)cardData[0];
-                    Rank rank = (Rank)cardData[1];
+                    Suit suit = (Suit) cardData[0];
+                    Rank rank = (Rank) cardData[1];
                     gambler.takeCard(rank, suit);
                     System.out.println("Вы открыли карту " +
                             rank.getName() +
@@ -124,8 +124,8 @@ public class BlackJack {
         // дилер берет карты пока сумма не привысит 17
         while (dealer.shouldTakeCard()) {
             Object[] cardData = deck.giveCard();
-            Suit suit = (Suit)cardData[0];
-            Rank rank = (Rank)cardData[1];
+            Suit suit = (Suit) cardData[0];
+            Rank rank = (Rank) cardData[1];
 
             System.out.println("Дилер открывает карту " +
                     rank.getName() +

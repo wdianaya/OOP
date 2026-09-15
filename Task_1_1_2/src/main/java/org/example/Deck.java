@@ -13,7 +13,7 @@ public class Deck {
         for (int i = 0; i < numberOfDecks; i++) {
             for (Suit suit : Suit.values()) {
                 for (Rank rank : Rank.values()) {
-                    cards.add(new Object[] {suit, rank});
+                    cards.add(new Object[]{suit, rank});
                 }
             }
         }

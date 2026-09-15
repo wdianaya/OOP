@@ -8,7 +8,7 @@ public abstract class Player {
 
     // взятие карты для дилера
     public void takeCard(Rank rank, Suit suit, boolean isOpen) {
-        myCards.add(new Object[] {suit, rank, isOpen});
+        myCards.add(new Object[]{suit, rank, isOpen});
     }
 
     // взятие карты для игрока
@@ -24,8 +24,8 @@ public abstract class Player {
         int acesCount = 0; // счётчик тузов в текущей колоде
 
         for (Object[] cardData : myCards) {
-            Rank rank = (Rank)cardData[1];
-            boolean isOpen = (boolean)cardData[2];
+            Rank rank = (Rank) cardData[1];
+            boolean isOpen = (boolean) cardData[2];
 
             // пропускаем закрытые карты, если смотрим открытые
             if (onlyOpen && !isOpen) {
@@ -50,11 +50,11 @@ public abstract class Player {
     // onlyOpen=false выводит все карты
     public String printCard(boolean onlyOpen) {
         StringBuilder str = new StringBuilder("[");
-        int count=0;
+        int count = 0;
         for (Object[] cardData : myCards) {
-            Suit suit = (Suit)cardData[0];
-            Rank rank = (Rank)cardData[1];
-            boolean isOpen = (boolean)cardData[2];
+            Suit suit = (Suit) cardData[0];
+            Rank rank = (Rank) cardData[1];
+            boolean isOpen = (boolean) cardData[2];
 
             // если выводим только открытые и сама карта закрыта (isOpen=false)
             if (onlyOpen && !isOpen) {
@@ -67,7 +67,7 @@ public abstract class Player {
                 str.append(rank.getScore());
                 str.append(")");
             }
-            if (count < myCards.size()-1) {
+            if (count < myCards.size() - 1) {
                 str.append(", ");
             }
             count++;

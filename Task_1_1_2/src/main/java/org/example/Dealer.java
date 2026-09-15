@@ -2,7 +2,7 @@ package org.example;
 
 import java.util.List;
 
-public class Dealer extends Player{
+public class Dealer extends Player {
     // класс дилера
 
     // проверка что текущая сумма очков с карт меньше 17
@@ -13,9 +13,9 @@ public class Dealer extends Player{
     // делаем карту открытой
     public List<Object> takeOpen() {
         for (Object[] cardData : myCards) {
-            boolean isOpen = (boolean)cardData[2];
-            Rank rank = (Rank)cardData[1];
-            Suit suit = (Suit)cardData[0];
+            boolean isOpen = (boolean) cardData[2];
+            Rank rank = (Rank) cardData[1];
+            Suit suit = (Suit) cardData[0];
             if (!isOpen) {
                 cardData[2] = true;
                 return List.of(rank, suit, true);
