@@ -1,10 +1,10 @@
 package org.example.players;
 
-import org.example.cards.Rank;
-import org.example.cards.Suit;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import org.example.cards.Rank;
+import org.example.cards.Suit;
 
 /**
  * Абстрактный класс, представляющий базового игрока в блэкджек.

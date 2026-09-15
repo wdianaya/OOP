@@ -1,13 +1,13 @@
 package org.example.players;
 
+import java.util.List;
+import java.util.Random;
+import java.util.Scanner;
+
 import org.example.cards.Deck;
 import org.example.cards.Rank;
 import org.example.cards.Suit;
 import org.example.utils.Utils;
-
-import java.util.List;
-import java.util.Random;
-import java.util.Scanner;
 
 /**
  * Класс, реализующий игровую логику блэкджека.
@@ -174,7 +174,9 @@ public class BlackJack {
         getStart();
         int gamblerScore = 0;
         int dealerScore = 0;
-        Scanner scanner = new Scanner(System.in); // объект класса Scanner для считывания ввода игрока
+
+        // объект класса Scanner для считывания ввода игрока
+        Scanner scanner = new Scanner(System.in);
         Utils result; // WIN | FAIL | CONT
 
         while (true) {
