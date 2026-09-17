@@ -3,6 +3,7 @@ package org.example.players;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.example.cards.Card;
 import org.example.cards.Rank;
 import org.example.cards.Suit;
 
@@ -11,10 +12,11 @@ import org.example.cards.Suit;
  * Содержит общую логику хранения карт, подсчета очков и вывода информации.
  */
 public abstract class Player {
+    private static final int MAX_SUM_CARDS = 21;
     /**
-     * Коллекция для хранения карт игрока в формате [Suit, Rank, isOpen].
+     * Коллекция для хранения карт игрока.
      */
-    protected List<Object[]> myCards = new ArrayList<>();
+    protected List<Card> myCards = new ArrayList<>();
 
     /**
      * Добавляет карту в руку игрока с указанием статуса её видимости.
@@ -24,9 +26,8 @@ public abstract class Player {
      * @param isOpen статус видимости (true — открыта, false — закрыта)
      */
     public void takeCard(Rank rank, Suit suit, boolean isOpen) {
-        myCards.add(new Object[]{suit, rank, isOpen});
+        myCards.add(new Card(suit, rank, isOpen));
     }
-
     /**
      * Добавляет открытую карту в руку игрока (по умолчанию isOpen = true).
      *
@@ -43,12 +44,12 @@ public abstract class Player {
      * onlyOpen=false считает абсолютно все карты
      */
     public int calculateScore(boolean onlyOpen) {
-        int sum = 0; // общая сумма значений всех карт колоды
-        int acesCount = 0; // счётчик тузов в текущей колоде
+        int sum = 0; // общая сумма значений всех карт
+        int acesCount = 0; // счётчик тузов
 
-        for (Object[] cardData : myCards) {
-            Rank rank = (Rank) cardData[1];
-            boolean isOpen = (boolean) cardData[2];
+        for (Card card : myCards) {
+            Rank rank = card.rank();
+            boolean isOpen = card.isOpen();
 
             // пропускаем закрытые карты, если смотрим открытые
             if (onlyOpen && !isOpen) {
@@ -60,46 +61,13 @@ public abstract class Player {
                 acesCount++;
             }
         }
-        // если в колоде присутствовали тузы и значение привысило 21,
-        // делаем вклад тузов равный 1 в общую сумму
-        while (sum > 21 && acesCount > 0) {
-            sum -= 10;
+        // если в колоде присутствовали тузы и значение превысило 21,
+        // делаем вклад тузов равным 1 в общую сумму
+        while (sum > MAX_SUM_CARDS && acesCount > 0) {
+            sum -= Rank.ACE.getScore();
             acesCount--;
         }
         return sum;
-    }
-
-    /**
-     * Формирует строковое представление текущего набора карт игрока.
-     * onlyOpen=true выводит только открытые карты
-     * onlyOpen=false выводит все карты
-     */
-    public String printCard(boolean onlyOpen) {
-        StringBuilder str = new StringBuilder("[");
-        int count = 0;
-        for (Object[] cardData : myCards) {
-            Suit suit = (Suit) cardData[0];
-            Rank rank = (Rank) cardData[1];
-            boolean isOpen = (boolean) cardData[2];
-
-            // если выводим только открытые и сама карта закрыта (isOpen=false)
-            if (onlyOpen && !isOpen) {
-                str.append("<закрытая карта>");
-            } else {
-                str.append(rank.getName());
-                str.append(" ");
-                str.append(suit.getSymbol());
-                str.append(" (");
-                str.append(rank.getScore());
-                str.append(")");
-            }
-            if (count < myCards.size() - 1) {
-                str.append(", ");
-            }
-            count++;
-        }
-        str.append("]");
-        return str.toString();
     }
 
     /**
@@ -114,5 +82,9 @@ public abstract class Player {
      */
     public int getVisibleSum() {
         return calculateScore(true);
+    }
+
+    public List<Card> getCards() {
+        return myCards;
     }
 }
