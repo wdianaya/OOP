@@ -95,10 +95,10 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Field</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color"><code>protected <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>[]&gt;</code></div>
+<div class="col-first even-row-color"><code>protected <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../cards/Card.html" title="class in org.example.cards">Card</a>&gt;</code></div>
 <div class="col-second even-row-color"><code><a href="#myCards" class="member-name-link">myCards</a></code></div>
 <div class="col-last even-row-color">
-<div class="block">Коллекция для хранения карт игрока в формате [Suit, Rank, isOpen].</div>
+<div class="block">Коллекция для хранения карт игрока.</div>
 </div>
 </div>
 </section>
@@ -132,20 +132,18 @@ loadScripts(document, 'script');</script>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Вычисляет общую сумму очков на руках с учетом правил для тузов.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getFullSum()" class="member-name-link">getFullSum</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../cards/Card.html" title="class in org.example.cards">Card</a>&gt;</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getCards()" class="member-name-link">getCards</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getFullSum()" class="member-name-link">getFullSum</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Возвращает сумму значений всех карт (открытых и закрытых).</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getVisibleSum()" class="member-name-link">getVisibleSum</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Возвращает сумму только открытых карт (используется для дилера во время хода игрока).</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#printCard(boolean)" class="member-name-link">printCard</a><wbr>(boolean&nbsp;onlyOpen)</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getVisibleSum()" class="member-name-link">getVisibleSum</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Формирует строковое представление текущего набора карт игрока.</div>
+<div class="block">Возвращает сумму только открытых карт (используется для дилера во время хода игрока).</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#takeCard(org.example.cards.Rank,org.example.cards.Suit)" class="member-name-link">takeCard</a><wbr>(<a href="../cards/Rank.html" title="enum class in org.example.cards">Rank</a>&nbsp;rank,
@@ -180,8 +178,8 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="myCards">
 <h3>myCards</h3>
-<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>[]&gt;</span>&nbsp;<span class="element-name">myCards</span></div>
-<div class="block">Коллекция для хранения карт игрока в формате [Suit, Rank, isOpen].</div>
+<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../cards/Card.html" title="class in org.example.cards">Card</a>&gt;</span>&nbsp;<span class="element-name">myCards</span></div>
+<div class="block">Коллекция для хранения карт игрока.</div>
 </section>
 </li>
 </ul>
@@ -244,15 +242,6 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
-<section class="detail" id="printCard(boolean)">
-<h3>printCard</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">printCard</span><wbr><span class="parameters">(boolean&nbsp;onlyOpen)</span></div>
-<div class="block">Формирует строковое представление текущего набора карт игрока.
- onlyOpen=true выводит только открытые карты
- onlyOpen=false выводит все карты</div>
-</section>
-</li>
-<li>
 <section class="detail" id="getFullSum()">
 <h3>getFullSum</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getFullSum</span>()</div>
@@ -264,6 +253,12 @@ loadScripts(document, 'script');</script>
 <h3>getVisibleSum</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getVisibleSum</span>()</div>
 <div class="block">Возвращает сумму только открытых карт (используется для дилера во время хода игрока).</div>
+</section>
+</li>
+<li>
+<section class="detail" id="getCards()">
+<h3>getCards</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../cards/Card.html" title="class in org.example.cards">Card</a>&gt;</span>&nbsp;<span class="element-name">getCards</span>()</div>
 </section>
 </li>
 </ul>
