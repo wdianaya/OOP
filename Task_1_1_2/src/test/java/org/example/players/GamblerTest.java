@@ -3,7 +3,6 @@ package org.example.players;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.Scanner;
-
 import org.example.cards.Deck;
 import org.example.cards.Rank;
 import org.example.cards.Suit;

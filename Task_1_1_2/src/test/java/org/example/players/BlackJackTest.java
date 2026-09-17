@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
-
 import org.example.game.BlackJack;
 import org.junit.jupiter.api.Test;
 

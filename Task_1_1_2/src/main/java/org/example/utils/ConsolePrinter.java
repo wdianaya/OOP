@@ -35,6 +35,9 @@ public class ConsolePrinter {
         System.out.println("Дилер раздал карты");
     }
 
+    /**
+     * Вывести текущий счёт по окончании раунда.
+     */
     public static void printCurrentScore(ScoreBoard score) {
         System.out.println("Текущий счёт - Игрок: "
                 + score.getGamblerScore() + " | Дилер: "
@@ -49,6 +52,9 @@ public class ConsolePrinter {
         System.out.println("У вас перебор! Вы проиграли раунд :(.");
     }
 
+    /**
+     * Вывести один из итогов раунда по результатам хода.
+     */
     public static void printRoundWinner(boolean playerWon) {
         if (playerWon) {
             System.out.println("Вы выиграли раунд!");
@@ -77,6 +83,9 @@ public class ConsolePrinter {
         System.out.println("Ход Дилера\n--------");
     }
 
+    /**
+     * Вывести информацию о том что дилер открыл закрытую карту и эту карту.
+     */
     public static void printDealerRevealedHiddenCard(Rank rank, Suit suit) {
         System.out.println("Дилер открывает закрытую карту "
                 + rank.getName()
@@ -84,6 +93,9 @@ public class ConsolePrinter {
                 + rank.getScore() + ")");
     }
 
+    /**
+     * Вывод информации о последующих откртиях карты дилером.
+     */
     public static void printDealerDrewCard(Rank rank, Suit suit) {
         System.out.println("Дилер открывает карту "
                 + rank.getName()
@@ -135,6 +147,9 @@ public class ConsolePrinter {
                 + " чтобы взять карту, и “0”, чтобы остановиться ...");
     }
 
+    /**
+     * Вывести информацию о открытой карте игрока.
+     */
     public static void printGamblerDrewCard(Rank rank, Suit suit) {
         System.out.println("Вы открыли карту "
                 + rank.getName()
@@ -147,6 +162,9 @@ public class ConsolePrinter {
         System.out.println("Введено некорректное число.");
     }
 
+    /**
+     * Вывести текущую сумму очково с карт.
+     */
     public static void printScore(int score) {
         System.out.println(score);
     }

@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-
 import org.example.cards.Rank;
 import org.example.cards.Suit;
 import org.example.players.Dealer;

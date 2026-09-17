@@ -1,7 +1,6 @@
 package org.example.players;
 
 import java.util.List;
-
 import org.example.cards.Card;
 import org.example.cards.Deck;
 import org.example.cards.Rank;

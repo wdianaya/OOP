@@ -1,7 +1,6 @@
 package org.example.game;
 
 import java.util.Scanner;
-
 import org.example.cards.Card;
 import org.example.cards.Deck;
 import org.example.players.Dealer;

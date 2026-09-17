@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
-
 import org.example.cards.Card;
 import org.example.cards.Deck;
 import org.example.cards.Rank;
@@ -31,7 +30,6 @@ class DealerTest {
         assertEquals(Suit.CLUBS, openCard.get(0).suit());
         assertTrue(openCard.get(0).isOpen());
 
-        // Повторный вызов должен вернуть пустой список, так как закрытых карт больше нет
         List<Card> emptyCheck = dealer.takeOpen();
         assertTrue(emptyCheck.isEmpty());
     }
@@ -43,16 +41,18 @@ class DealerTest {
         Deck deck = new Deck();
 
         // Даем дилеру видимую и закрытую карту
-        dealer.takeCard(Rank.FIVE, Suit.HEARTS, true);  // Видимая сумма = 5
-        dealer.takeCard(Rank.SIX, Suit.SPADES, false);  // Закрытая сумма = 6 (полная = 11)
+        dealer.takeCard(Rank.FIVE, Suit.HEARTS, true);
+        dealer.takeCard(Rank.SIX, Suit.SPADES, false);
 
         // Запускаем ход дилера
         GameResults result = dealer.dealerActions(dealer, gambler, deck);
 
-        // Дилер должен добирать карты, пока сумма < 17, и вернуть результат
-        assertTrue(result == GameResults.CONT ||
-                result == GameResults.FAIL || result == GameResults.WIN);
-        // Проверяем, что дилер набрал карты и его сумма теперь не меньше 17 (или у него перебор)
-        assertTrue(dealer.getFullSum() >= 17 || result == GameResults.FAIL);
+
+        assertTrue(result == GameResults.CONT
+                || result == GameResults.FAIL
+                || result == GameResults.WIN);
+
+        assertTrue(dealer.getFullSum() >= 17
+                || result == GameResults.FAIL);
     }
 }
