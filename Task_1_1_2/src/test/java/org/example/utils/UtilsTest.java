@@ -7,10 +7,10 @@ import org.junit.jupiter.api.Test;
 class UtilsTest {
     @Test
     void testCheckedRes() {
-        assertEquals(Utils.WIN, Utils.checkedRes(21));
-        assertEquals(Utils.FAIL, Utils.checkedRes(22));
-        assertEquals(Utils.FAIL, Utils.checkedRes(25));
-        assertEquals(Utils.CONT, Utils.checkedRes(20));
-        assertEquals(Utils.CONT, Utils.checkedRes(0));
+        assertEquals(GameResults.WIN, GameResults.checkedRes(21));
+        assertEquals(GameResults.FAIL, GameResults.checkedRes(22));
+        assertEquals(GameResults.FAIL, GameResults.checkedRes(25));
+        assertEquals(GameResults.CONT, GameResults.checkedRes(20));
+        assertEquals(GameResults.CONT, GameResults.checkedRes(0));
     }
 }

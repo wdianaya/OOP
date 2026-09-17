@@ -14,10 +14,10 @@ class DeckTest {
         assertNotNull(deck);
 
         // Можем взять первую карту, чтобы убедиться, что колода не пуста
-        Object[] card = deck.giveCard();
+        Card card = deck.giveCard();
         assertNotNull(card);
-        assertNotNull(card[0]); // (Suit)
-        assertNotNull(card[1]); // (Rank)
+        assertNotNull(card.suit()); // (Suit)
+        assertNotNull(card.rank()); // (Rank)
     }
 
     @Test
@@ -27,10 +27,10 @@ class DeckTest {
 
         // Проверяем последовательную выдачу всех 52 карт
         for (int i = 0; i < 52; i++) {
-            Object[] card = deck.giveCard();
+            Card card = deck.giveCard();
             assertNotNull(card);
-            assertTrue(card[0] instanceof Suit);
-            assertTrue(card[1] instanceof Rank);
+            assertTrue(card.suit() instanceof Suit);
+            assertTrue(card.rank() instanceof Rank);
         }
     }
 

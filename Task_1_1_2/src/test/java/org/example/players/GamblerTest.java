@@ -7,7 +7,7 @@ import java.util.Scanner;
 import org.example.cards.Deck;
 import org.example.cards.Rank;
 import org.example.cards.Suit;
-import org.example.utils.Utils;
+import org.example.utils.GameResults;
 import org.junit.jupiter.api.Test;
 
 class GamblerTest {
@@ -25,8 +25,8 @@ class GamblerTest {
         // Передаем сканер с вводом "0" (остановиться сразу)
         Scanner scanner = new Scanner("0\n");
 
-        Utils result = gambler.gamblerAction(gambler, dealer, scanner, deck);
-        assertEquals(Utils.CONT, result);
+        GameResults result = gambler.gamblerAction(gambler, dealer, scanner, deck);
+        assertEquals(GameResults.CONT, result);
     }
 
     @Test
@@ -42,8 +42,8 @@ class GamblerTest {
         // Передаем сканер с последовательностью: "1" (взять карту), затем "0" (остановиться)
         Scanner scanner = new Scanner("1\n0\n");
 
-        Utils result = gambler.gamblerAction(gambler, dealer, scanner, deck);
-        assertEquals(Utils.CONT, result);
+        GameResults result = gambler.gamblerAction(gambler, dealer, scanner, deck);
+        assertEquals(GameResults.CONT, result);
     }
 
     @Test
@@ -59,7 +59,7 @@ class GamblerTest {
         // Передаем неверный ввод ("abc", "99"), а затем правильный ("0")
         Scanner scanner = new Scanner("abc\n99\n0\n");
 
-        Utils result = gambler.gamblerAction(gambler, dealer, scanner, deck);
-        assertEquals(Utils.CONT, result);
+        GameResults result = gambler.gamblerAction(gambler, dealer, scanner, deck);
+        assertEquals(GameResults.CONT, result);
     }
 }
