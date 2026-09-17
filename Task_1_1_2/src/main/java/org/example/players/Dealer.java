@@ -2,11 +2,12 @@ package org.example.players;
 
 import java.util.List;
 
+import org.example.cards.Card;
 import org.example.cards.Deck;
 import org.example.cards.Rank;
 import org.example.cards.Suit;
 import org.example.utils.ConsolePrinter;
-import org.example.utils.Utils;
+import org.example.utils.GameResults;
 
 /**
  * Класс, реализовывающий логику дилера.
@@ -22,17 +23,15 @@ public class Dealer extends Player {
     /**
      * Открывает закрытую карту и возвращает её.
      */
-    public List<Object> takeOpen() {
-        for (Object[] cardData : myCards) {
-            boolean isOpen = (boolean) cardData[2];
-            Rank rank = (Rank) cardData[1];
-            Suit suit = (Suit) cardData[0];
-            if (!isOpen) {
-                cardData[2] = true;
-                return List.of(rank, suit, true);
+    public List<Card> takeOpen() {
+        for (Card card : myCards) {
+            if (!card.isOpen()) {
+                Card openedCard = new Card(card.suit(), card.rank(), true);
+                int index = myCards.indexOf(card);
+                myCards.set(index, openedCard);
+                return List.of(openedCard);
             }
         }
-        // возвращаем пустой список, если не было закрытой карты
         return List.of();
     }
 
@@ -48,40 +47,34 @@ public class Dealer extends Player {
     /**
      * Реализация хода дилера.
      */
-    public Utils dealerActions(Dealer dealer, Gambler gambler, Deck deck) {
-        System.out.println("Ход Дилера\n--------");
-        // открываем закрытую карту
-        List<Object> openCard = dealer.takeOpen();
+    public GameResults dealerActions(Dealer dealer, Gambler gambler, Deck deck) {
+        ConsolePrinter.printDealerTurnHeader();
 
-        if (!openCard.isEmpty()) {
-            Rank rank0 = (Rank) openCard.get(0);
-            Suit suit0 = (Suit) openCard.get(1);
-            System.out.println("Дилер открывает закрытую карту "
-                    + rank0.getName()
-                    + " " + suit0.getSymbol() + " ("
-                    + rank0.getScore() + ")");
-            // делаем перерасчёт общий суммы с учетом открытой карты
+        // открываем закрытую карту
+        List<Card> openCards = dealer.takeOpen();
+
+        if (!openCards.isEmpty()) {
+            Card card = openCards.get(0);
+            ConsolePrinter.printDealerRevealedHiddenCard(card.rank(), card.suit());
+
+            // делаем перерасчёт общей суммы с учетом открытой карты
             int score = dealer.getVisibleSum();
-            Utils.checkedRes(score);
+            GameResults.checkedRes(score);
 
             ConsolePrinter.printLists(dealer, gambler);
         }
+
         int score = dealer.getVisibleSum();
-        Utils curRes = Utils.checkedRes(score);
+        GameResults curRes = GameResults.checkedRes(score);
 
-        // дилер берет карты пока сумма не привысит 17
+        // дилер берет карты, пока должен брать по правилам
         while (dealer.shouldTakeCard()) {
-            Object[] cardData = deck.giveCard();
-            Suit suit = (Suit) cardData[0];
-            Rank rank = (Rank) cardData[1];
+            Card cardData = deck.giveCard();
+            ConsolePrinter.printDealerDrewCard(cardData.rank(), cardData.suit());
 
-            System.out.println("Дилер открывает карту "
-                    + rank.getName()
-                    + " " + suit.getSymbol()
-                    + " (" + rank.getScore() + ")");
-            dealer.takeCard(rank, suit, true);
+            dealer.takeCard(cardData.rank(), cardData.suit(), true);
             score = dealer.getFullSum();
-            curRes = Utils.checkedRes(score);
+            curRes = GameResults.checkedRes(score);
             ConsolePrinter.printLists(dealer, gambler);
         }
         return curRes;

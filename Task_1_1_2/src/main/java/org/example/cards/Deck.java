@@ -9,7 +9,7 @@ import java.util.Random;
  * Класс, представляющий колоду игральных карт.
  */
 public class Deck {
-    private final List<Object[]> cards = new ArrayList<>();
+    private final List<Card> cards = new ArrayList<>();
 
     /**
      * Конструктор по умолчанию: генерирует случайное количество колод (от 1 до 3).
@@ -30,24 +30,28 @@ public class Deck {
     /**
      * Создает колоду карт указанного размера (количество стандартных колод по 52 карты).
      *
-     * @param numberOfDecks количество стандартных колод, объединяемых в одну.
+     * @param countOfDecks количество стандартных колод, объединяемых в одну.
      */
-    public void initializeDeck(int numberOfDecks) {
-        for (int i = 0; i < numberOfDecks; i++) {
+    private void initializeDeck(int countOfDecks) {
+        for (int i = 0; i < countOfDecks; i++) {
             for (Suit suit : Suit.values()) {
                 for (Rank rank : Rank.values()) {
-                    cards.add(new Object[]{suit, rank});
+                    cards.add(new Card(suit, rank, true));
                 }
             }
         }
-        shuffle();
+        shuffleCards();
     }
 
     /**
      * Перемещивает карты в колоде.
      */
-    public void shuffle() {
+    private void shuffleCards() {
         Collections.shuffle(cards);
+    }
+
+    private void addCardInDeck(Card card) {
+        cards.add(card);
     }
 
     /**
@@ -56,7 +60,7 @@ public class Deck {
      * @return массив объектов, содержащий масть и достоинство карты
      * @throws IllegalStateException если колода опустела
      */
-    public Object[] giveCard() {
+    public Card giveCard() {
         if (cards.isEmpty()) { // если на каком-то из раундов закончатся карты
             throw new IllegalStateException("Колода пуста!");
         }

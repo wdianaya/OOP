@@ -1,6 +1,6 @@
 package org.example;
 
-import org.example.players.BlackJack;
+import org.example.game.BlackJack;
 
 /**
  * Главный класс для запуска программы.
@@ -11,6 +11,6 @@ public class Main {
      */
     public static void main(String[] args) {
         BlackJack game = new BlackJack();
-        game.main_play();
+        game.mainPlay();
     }
 }
