@@ -28,6 +28,7 @@ public abstract class Player {
     public void takeCard(Rank rank, Suit suit, boolean isOpen) {
         myCards.add(new Card(suit, rank, isOpen));
     }
+
     /**
      * Добавляет открытую карту в руку игрока (по умолчанию isOpen = true).
      *

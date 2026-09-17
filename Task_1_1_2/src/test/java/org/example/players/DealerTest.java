@@ -40,7 +40,7 @@ class DealerTest {
     void testDealerActions() {
         Dealer dealer = new Dealer();
         Gambler gambler = new Gambler();
-        Deck deck = new Deck(); // Использование стандартного конструктора колоды (или подправьте под свой)
+        Deck deck = new Deck();
 
         // Даем дилеру видимую и закрытую карту
         dealer.takeCard(Rank.FIVE, Suit.HEARTS, true);  // Видимая сумма = 5
@@ -50,7 +50,8 @@ class DealerTest {
         GameResults result = dealer.dealerActions(dealer, gambler, deck);
 
         // Дилер должен добирать карты, пока сумма < 17, и вернуть результат
-        assertTrue(result == GameResults.CONT || result == GameResults.FAIL || result == GameResults.WIN);
+        assertTrue(result == GameResults.CONT ||
+                result == GameResults.FAIL || result == GameResults.WIN);
         // Проверяем, что дилер набрал карты и его сумма теперь не меньше 17 (или у него перебор)
         assertTrue(dealer.getFullSum() >= 17 || result == GameResults.FAIL);
     }

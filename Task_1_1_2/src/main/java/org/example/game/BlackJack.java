@@ -15,6 +15,7 @@ import org.example.utils.GameResults;
 public class BlackJack {
     private static final int INITIAL_HAND_SIZE = 2;
     private static final int MAX_SUM_CARDS = 21;
+
     /**
      * Реализовывает первую раздачу в игре.
      */
@@ -102,12 +103,14 @@ public class BlackJack {
 
             ConsolePrinter.printInitialDealMessage();
 
-            ConsolePrinter.printLists(dealer, gambler); // выводим список текущих карт игрока и дилера
+            // выводим список текущих карт игрока и дилера
+            ConsolePrinter.printLists(dealer, gambler);
 
             // result содержит информацию о результате хода игрока
             result = gambler.gamblerAction(gambler, dealer, scanner, deck);
 
-            handleRoundResult(result, dealer, gambler, deck, score); // обработка результатов хода игрока
+            // обработка результатов хода игрока
+            handleRoundResult(result, dealer, gambler, deck, score);
 
             ConsolePrinter.printCurrentScore(score);
 

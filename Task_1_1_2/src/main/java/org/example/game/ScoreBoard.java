@@ -1,5 +1,8 @@
 package org.example.game;
 
+/**
+ * Класс для ведения и управления счетом игры между игроком и дилером.
+ */
 public class ScoreBoard {
     private int gamblerScore = 0;
     private int dealerScore = 0;

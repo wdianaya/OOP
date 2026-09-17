@@ -131,7 +131,8 @@ public class ConsolePrinter {
     }
 
     public static void printGamblerInputError() {
-        System.out.println("Ошибка ввода. Введите “1”, чтобы взять карту, и “0”, чтобы остановиться ...");
+        System.out.println("Ошибка ввода. Введите “1”,"
+                + " чтобы взять карту, и “0”, чтобы остановиться ...");
     }
 
     public static void printGamblerDrewCard(Rank rank, Suit suit) {
