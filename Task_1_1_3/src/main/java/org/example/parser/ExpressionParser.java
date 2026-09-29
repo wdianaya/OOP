@@ -10,6 +10,8 @@ import org.example.expression.Variable;
 
 /**
  * Класс, реализующий парсинг вводимого выражения.
+ * Читает строку и создаёт дерево объектов-выражений
+ * (превращает текст в структуру).
  */
 public final class ExpressionParser {
     private final Lexer lexer;
