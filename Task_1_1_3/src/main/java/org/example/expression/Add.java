@@ -2,6 +2,9 @@ package org.example.expression;
 
 import org.example.visitor.ExpressionVisitor;
 
+/**
+ * Класс реализации сложения чисел.
+ */
 public class Add extends BinOp {
 
     public Add(Expression left, Expression right) {

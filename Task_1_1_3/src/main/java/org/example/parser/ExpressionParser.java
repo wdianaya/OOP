@@ -20,6 +20,10 @@ public final class ExpressionParser {
         this.lexer = new Lexer(input);
     }
 
+    /**
+     * Возвращает десериализованное выражение в объект Expression.
+     *
+     */
     public static Expression parse(String input) {
         ExpressionParser parser = new ExpressionParser(input);
         Expression result = parser.parseExpression();

@@ -49,6 +49,8 @@ public final class Lexer {
             case ')':
                 pos++;
                 return new Token(Token.TokenType.RPAREN, ")", start);
+            default:
+                break;
         }
 
         if (Character.isDigit(c)) {
@@ -63,7 +65,7 @@ public final class Lexer {
 
         if (Character.isLetter(c) || c == '_') {
             while (pos < input.length()
-                && (Character.isLetterOrDigit(input.charAt(pos))
+                    && (Character.isLetterOrDigit(input.charAt(pos))
                     || input.charAt(pos) == '_')) {
                 pos++;
             }

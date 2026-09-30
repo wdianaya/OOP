@@ -2,6 +2,9 @@ package org.example.expression;
 
 import org.example.visitor.ExpressionVisitor;
 
+/**
+ * Класс реализации числа.
+ */
 public class Number extends Expression {
     private final int value;
 

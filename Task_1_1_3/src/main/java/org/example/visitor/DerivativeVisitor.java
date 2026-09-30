@@ -9,9 +9,9 @@ import org.example.expression.Sub;
 import org.example.expression.Variable;
 
 /**
- *  Класс, реализующий символьное дифференцирование.
+ * Класс, реализующий символьное дифференцирование.
  */
-public final class DerivativeVisitor implements ExpressionVisitor<Expression>{
+public final class DerivativeVisitor implements ExpressionVisitor<Expression> {
     private final String variable;
 
     public DerivativeVisitor(String variable) {

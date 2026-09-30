@@ -1,13 +1,13 @@
 package org.example.visitor;
 
+import java.util.Map;
+
 import org.example.expression.Add;
 import org.example.expression.Div;
 import org.example.expression.Mul;
 import org.example.expression.Number;
 import org.example.expression.Sub;
 import org.example.expression.Variable;
-
-import java.util.Map;
 
 /**
  * Класс, вычисляющий значние выражения.
@@ -16,7 +16,9 @@ public final class EvalVisitor implements ExpressionVisitor<Integer> {
     private final Map<String, Integer> values;
 
     public EvalVisitor(Map<String, Integer> values) {
-        if (values == null) throw new NullPointerException("values");
+        if (values == null) {
+            throw new NullPointerException("values");
+        }
         this.values = values;
     }
 

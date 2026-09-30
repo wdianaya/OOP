@@ -8,6 +8,9 @@ import java.util.Map;
  * вида: "x = 10; y = 13".
  */
 public final class AssignmentParser {
+    /**
+     * Возвращает объекты вида переменная - значение.
+     */
     public static Map<String, Integer> parse(String input) {
         Map<String, Integer> result = new HashMap<>();
 

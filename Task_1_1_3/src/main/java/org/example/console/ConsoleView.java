@@ -1,15 +1,13 @@
 package org.example.console;
 
+import java.util.Scanner;
+
 import org.example.expression.Add;
-import org.example.expression.Div;
 import org.example.expression.Expression;
 import org.example.expression.Mul;
 import org.example.expression.Number;
-import org.example.expression.Sub;
 import org.example.expression.Variable;
 import org.example.parser.ExpressionParser;
-
-import java.util.Scanner;
 
 /**
  * Консольный интерфейс. Отвечает только за ввод/вывод
@@ -33,12 +31,12 @@ public class ConsoleView {
         ); // (3+(2*x))
 
         System.out.println("Исходная запись");
-        System.out.println("Expression e = new Add(" +
-                "new Number(3)," +
-                "new Mul(" +
-                "new Number(2)," +
-                "new Variable(\"xa\"))" +
-                ")\n");
+        System.out.println("Expression e = new Add("
+                + "new Number(3),"
+                + "new Mul("
+                + "new Number(2),"
+                + "new Variable(\"xa\"))"
+                + ")\n");
         System.out.println("Вывод выражения");
         System.out.println("e.print() -> " + e.print() + "\n");
 
@@ -60,8 +58,12 @@ public class ConsoleView {
             System.out.print("> ");
             String line = scanner.nextLine().trim();
 
-            if (line.isEmpty()) continue;
-            if (line.equals("exit")) break;
+            if (line.isEmpty()) {
+                continue;
+            }
+            if (line.equals("exit")) {
+                break;
+            }
 
             try {
                 Expression e = ExpressionParser.parse(line);

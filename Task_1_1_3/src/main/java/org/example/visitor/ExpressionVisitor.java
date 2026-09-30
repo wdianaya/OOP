@@ -13,9 +13,14 @@ import org.example.expression.Variable;
  */
 public interface ExpressionVisitor<R> {
     R visitNumber(Number number);
+
     R visitVariable(Variable variable);
+
     R visitAdd(Add add);
+
     R visitSub(Sub sub);
+
     R visitMul(Mul mul);
+
     R visitDiv(Div div);
 }

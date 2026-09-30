@@ -1,10 +1,11 @@
 package org.example.expression;
 
+import org.example.parser.AssignmentParser;
+import org.example.visitor.DerivativeVisitor;
+import org.example.visitor.EvalVisitor;
 import org.example.visitor.ExpressionVisitor;
 import org.example.visitor.PrintVisitor;
-import org.example.visitor.EvalVisitor;
-import org.example.visitor.DerivativeVisitor;
-import org.example.parser.AssignmentParser;
+
 
 /**
  * Класс, реализующий базовое выражение.
