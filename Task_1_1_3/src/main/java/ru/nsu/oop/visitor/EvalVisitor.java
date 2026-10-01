@@ -15,6 +15,9 @@ import ru.nsu.oop.expression.Variable;
 public final class EvalVisitor implements ExpressionVisitor<Integer> {
     private final Map<String, Integer> values;
 
+    /**
+     * Конструктор класса, устанавливающий переменные для означивания.
+     */
     public EvalVisitor(Map<String, Integer> values) {
         if (values == null) {
             throw new NullPointerException("values");

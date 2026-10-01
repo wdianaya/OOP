@@ -5,6 +5,9 @@ package ru.nsu.oop.parser;
  */
 public record Token(TokenType type, String text, int position) {
 
+    /**
+     * Типы токенов, которые может распознать лексер.
+     */
     public enum TokenType {
         NUMBER,
         VARIABLE,

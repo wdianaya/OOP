@@ -1,7 +1,5 @@
 package ru.nsu.oop.console;
 
-import java.util.Scanner;
-
 import ru.nsu.oop.expression.Expression;
 import ru.nsu.oop.parser.ExpressionParser;
 
@@ -12,12 +10,16 @@ import ru.nsu.oop.parser.ExpressionParser;
 public class ConsoleView {
     private final InputReader inputReader;
 
-    /** Конструктор по умолчанию. */
+    /**
+     * Конструктор по умолчанию.
+     */
     public ConsoleView() {
         this(new ConsoleInputReader());
     }
 
-    /** Конструктор для тестов. */
+    /**
+     * Конструктор для тестов.
+     */
     public ConsoleView(InputReader inputReader) {
         if (inputReader == null) {
             throw new NullPointerException("inputReader cannot be null");
@@ -25,37 +27,36 @@ public class ConsoleView {
         this.inputReader = inputReader;
     }
 
+    /**
+     * Интерактивный ввод/вывод.
+     */
     public void start() {
-        userMode();
-    }
-
-    private void userMode() {
-        System.out.println("====================================");
+        ConsolePrint.printString("====================================");
         while (true) {
-            System.out.println("Введите выражение или 'exit' для выхода.");
-            System.out.print("> ");
-            String line = inputReader.readLine().trim();
+            ConsolePrint.printString("Введите выражение или 'exit' для выхода.");
+            ConsolePrint.printString("> ");
 
+            String line = inputReader.readLine().trim();
             if (line.isEmpty()) {
                 continue;
             }
             if (line.equals("exit")) {
                 break;
             }
-
             try {
                 Expression e = ExpressionParser.parse(line);
-                System.out.println("Введенное выражение = " + e.print());
+                ConsolePrint.printString("Введенное выражение = " + e.print());
 
-                System.out.print("Введите переменную для дифференцирования: ");
+                ConsolePrint.printString("Введите переменную для дифференцирования: ");
                 String var = inputReader.readLine().trim();
-                System.out.println("d/d" + var + " = " + e.derivative(var).print());
+                ConsolePrint.printString("d/d" + var + " = " + e.derivative(var).print());
 
-                System.out.print("Введите означивание (например, x = 10; y = 13): ");
+                ConsolePrint.printString("Введите означивание (например, x = 10; y = 13): ");
                 String assigns = inputReader.readLine().trim();
-                System.out.println("eval = " + e.eval(assigns));
+                ConsolePrint.printString("eval = " + e.eval(assigns));
+
             } catch (RuntimeException ex) {
-                System.out.println("Ошибка: " + ex.getMessage());
+                ConsolePrint.printException(ex.getMessage());
             }
         }
     }

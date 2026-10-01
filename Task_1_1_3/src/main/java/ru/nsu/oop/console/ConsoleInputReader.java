@@ -1,9 +1,11 @@
 package ru.nsu.oop.console;
 
-
 import java.util.Scanner;
 
-public class ConsoleInputReader implements InputReader{
+/**
+ * Класс, ответственный за объект типа Scanner.
+ */
+public class ConsoleInputReader implements InputReader {
     private final Scanner scanner = new Scanner(System.in);
 
     @Override
