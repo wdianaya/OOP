@@ -20,26 +20,27 @@ public final class AssignmentParser {
 
         for (String part : input.split(";")) {
             String trimmed = part.trim();
-            String[] pair = part.split("=");
-
-            if (pair.length != 2) {
+            if (trimmed.isEmpty()) {
+                continue;
+            }
+            int eqIdx = trimmed.indexOf('=');
+            if (eqIdx == -1) {
                 throw new IllegalArgumentException(
                         "Invalid assignments: " + trimmed
                 );
             }
 
-            String name = pair[0].trim();
+            String name = trimmed.substring(0, eqIdx).trim();
             int value;
-
             try {
-                value = Integer.parseInt(pair[1].trim());
-            } catch (NumberFormatException e) {
+                String valueStr = trimmed.substring(eqIdx+1).trim();
+                value = Integer.parseInt(valueStr);
+            } catch (NumberFormatException ex) {
                 throw new IllegalArgumentException(
-                        "Invalid number in assignment: " + trimmed, e);
+                        "Incorrect number: " + trimmed, ex);
             }
             result.put(name, value);
         }
-
         return result;
     }
 }
