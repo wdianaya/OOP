@@ -28,23 +28,3 @@ jacocoTestReport {
         xml.required = true
     }
 }
-
-jacocoTestReport {
-    afterEvaluate {
-        classDirectories.setFrom(files(classDirectories.files.map {
-            fileTree(dir: it, exclude: [
-                    '**/Main.class'
-            ])
-        }))
-    }
-}
-
-jacocoTestCoverageVerification {
-    afterEvaluate {
-        classDirectories.setFrom(files(classDirectories.files.map {
-            fileTree(dir: it, exclude: [
-                    '**/Main.class'
-            ])
-        }))
-    }
-}
