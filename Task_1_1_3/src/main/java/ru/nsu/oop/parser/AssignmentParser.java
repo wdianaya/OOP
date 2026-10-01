@@ -1,4 +1,4 @@
-package org.example.parser;
+package ru.nsu.oop.parser;
 
 import java.util.HashMap;
 import java.util.Map;
