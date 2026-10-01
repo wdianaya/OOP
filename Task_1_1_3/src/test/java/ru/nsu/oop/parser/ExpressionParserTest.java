@@ -35,4 +35,15 @@ class ExpressionParserTest {
         Expression parsed = ExpressionParser.parse("((3+(2*x))-((y-1)/5))");
         assertEquals("((3+(2*x))-((y-1)/5))", parsed.print());
     }
+
+    @Test
+    void testMissingEqualsSignThrowsException() {
+        IllegalArgumentException exception = assertThrows(
+                IllegalArgumentException.class,
+                () -> AssignmentParser.parse("x 10"),
+                "Ожидалось исключение при отсутствии знака '='"
+        );
+
+        assertEquals("Invalid assignments: x 10", exception.getMessage());
+    }
 }
