@@ -14,14 +14,14 @@ import static org.junit.jupiter.api.Assertions.*;
 class ExpressionParserTest {
     Expression expected = new Sub(
             new Add(
-                    new ru.nsu.oop.expression.Number(3),
+                    new Number(3),
                     new Mul(
-                            new ru.nsu.oop.expression.Number(2),
+                            new Number(2),
                             new Variable("x"))),
             new Div(
                     new Sub(
                             new Variable("y"),
-                            new ru.nsu.oop.expression.Number(1)),
+                            new Number(1)),
                     new Number(5)));
 
     @Test

@@ -15,6 +15,7 @@ class ExpressionTest {
                     new Sub(
                             new Variable("y"),
                             new Number(1)),
+
                     new Number(5)));
 
     @Test
