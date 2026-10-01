@@ -1,13 +1,15 @@
-package org.example.console;
+package ru.nsu.oop.console;
 
 import java.util.Scanner;
 
-import org.example.expression.Add;
-import org.example.expression.Expression;
-import org.example.expression.Mul;
-import org.example.expression.Number;
-import org.example.expression.Variable;
-import org.example.parser.ExpressionParser;
+import ru.nsu.oop.expression.Add;
+import ru.nsu.oop.expression.Div;
+import ru.nsu.oop.expression.Expression;
+import ru.nsu.oop.expression.Mul;
+import ru.nsu.oop.expression.Number;
+import ru.nsu.oop.expression.Sub;
+import ru.nsu.oop.expression.Variable;
+import ru.nsu.oop.parser.ExpressionParser;
 
 /**
  * Консольный интерфейс. Отвечает только за ввод/вывод
@@ -23,30 +25,28 @@ public class ConsoleView {
     private void fromTask() {
         System.out.println("\nПример из условия задания:\n\n");
 
-        Expression e = new Add(
-                new Number(3),
-                new Mul(
-                        new Number(2),
-                        new Variable("xa"))
-        ); // (3+(2*x))
+        Expression e = new Sub(
+                new Add(
+                        new Number(3),
+                        new Mul(
+                                new Number(2),
+                                new Variable("x"))),
+                new Div(
+                        new Sub(
+                                new Variable("y"),
+                                new Number(1)),
+                        new Number(5)));
 
-        System.out.println("Исходная запись");
-        System.out.println("Expression e = new Add("
-                + "new Number(3),"
-                + "new Mul("
-                + "new Number(2),"
-                + "new Variable(\"xa\"))"
-                + ")\n");
         System.out.println("Вывод выражения");
         System.out.println("e.print() -> " + e.print() + "\n");
 
         System.out.println("Нахождение производной по переменной");
-        Expression de = e.derivative("xa");
-        System.out.println("e.derivative(\"xa\") -> " + de.print() + "\n");
+        Expression de = e.derivative("x");
+        System.out.println("e.derivative(\"x\") -> " + de.print() + "\n");
 
         System.out.println("Вычисление значения выражения при означивании");
-        int res = e.eval("xa = 10");
-        System.out.println("e.eval(\"xa = 10\") -> " + res + "\n");
+        int res = e.eval("x = 10; y = 5");
+        System.out.println("e.eval(\"x = 10; y = 5\") -> " + res + "\n");
     }
 
     private void userMode() {

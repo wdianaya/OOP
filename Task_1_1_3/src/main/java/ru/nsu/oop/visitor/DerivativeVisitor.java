@@ -1,12 +1,12 @@
-package org.example.visitor;
+package ru.nsu.oop.visitor;
 
-import org.example.expression.Add;
-import org.example.expression.Div;
-import org.example.expression.Expression;
-import org.example.expression.Mul;
-import org.example.expression.Number;
-import org.example.expression.Sub;
-import org.example.expression.Variable;
+import ru.nsu.oop.expression.Add;
+import ru.nsu.oop.expression.Div;
+import ru.nsu.oop.expression.Expression;
+import ru.nsu.oop.expression.Mul;
+import ru.nsu.oop.expression.Number;
+import ru.nsu.oop.expression.Sub;
+import ru.nsu.oop.expression.Variable;
 
 /**
  * Класс, реализующий символьное дифференцирование.

@@ -1,4 +1,4 @@
-package org.example.expression;
+package ru.nsu.oop.expression;
 
 /**
  * Класс предок для всех бинарных операций.

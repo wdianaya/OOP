@@ -1,4 +1,4 @@
-package org.example.parser;
+package ru.nsu.oop.parser;
 
 /**
  * Токен - минимальная единица текста (поступающего на вход выражения).

@@ -1,10 +1,10 @@
-package org.example.expression;
+package ru.nsu.oop.expression;
 
-import org.example.parser.AssignmentParser;
-import org.example.visitor.DerivativeVisitor;
-import org.example.visitor.EvalVisitor;
-import org.example.visitor.ExpressionVisitor;
-import org.example.visitor.PrintVisitor;
+import ru.nsu.oop.parser.AssignmentParser;
+import ru.nsu.oop.visitor.DerivativeVisitor;
+import ru.nsu.oop.visitor.EvalVisitor;
+import ru.nsu.oop.visitor.ExpressionVisitor;
+import ru.nsu.oop.visitor.PrintVisitor;
 
 
 /**

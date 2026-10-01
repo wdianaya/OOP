@@ -1,7 +1,7 @@
-package org.example;
+package ru.nsu.oop;
 
 
-import org.example.console.ConsoleView;
+import ru.nsu.oop.console.ConsoleView;
 
 /**
  * Точка входа в программу.

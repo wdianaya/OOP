@@ -1,4 +1,4 @@
-package org.example.parser;
+package ru.nsu.oop.parser;
 
 /**
  * Класс, реализующий отправку сообщения на исключение

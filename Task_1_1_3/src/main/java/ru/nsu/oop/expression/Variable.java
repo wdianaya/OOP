@@ -1,6 +1,6 @@
-package org.example.expression;
+package ru.nsu.oop.expression;
 
-import org.example.visitor.ExpressionVisitor;
+import ru.nsu.oop.visitor.ExpressionVisitor;
 
 /**
  * Класс реализации переменной.
