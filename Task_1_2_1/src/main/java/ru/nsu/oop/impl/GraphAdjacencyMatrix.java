@@ -11,11 +11,11 @@ import java.util.*;
  */
 public class GraphAdjacencyMatrix<T> implements Graph<T> {
     /**
-     * Матрица смежности
+     * Матрица смежности. matrix[i][j] — число рёбер между i и j.
      */
     private final List<List<Integer>> matrix = new ArrayList<>();
     /**
-     * Пул индексов.
+     * Пул свободных индексов.
      * Очередь для хранения индексов удалённых элементов,
      * чтобы не перестраивать при удалении заново матрицу,
      * а новый при добавлении элемент ставить по индексу одного из удалённых
@@ -24,7 +24,7 @@ public class GraphAdjacencyMatrix<T> implements Graph<T> {
     /**
      * Хранит информацию о том, по какому индексу лежит вершина
      */
-    private final HashMap<Vertex<T>, Integer> indexOf = new HashMap<>();
+    private final Map<Vertex<T>, Integer> indexOf = new HashMap<>();
     /**
      * Хранит под индексом вершину:
      * индекс=индекс в матрице нужной вершины.
@@ -33,51 +33,50 @@ public class GraphAdjacencyMatrix<T> implements Graph<T> {
     private final List<Vertex<T>> vertexByIndex = new ArrayList<>();
 
     /**
-     * При добавлении ребра в матрицу увеличиваем на единицу
-     * значение ячейки в матрице смежности
+     * Увеличивает счётчик рёбер fromIdx -> toIdx на 1.
      */
-    private void increment(int i, int j) {
-        List<Integer> row = matrix.get(i);
-        row.set(j, row.get(j) + 1);
+    private void increment(int fromIdx, int toIdx) {
+        List<Integer> row = matrix.get(fromIdx);
+        row.set(toIdx, row.get(toIdx) + 1);
     }
 
     /**
-     * При удалении ребра из матрицы уменьшаем на единицу
-     * значение ячейки в матрице смежности
+     * Уменьшает счётчик рёбер fromIdx -> toIdx на 1.
      */
-    private void decrement(int i, int j) {
-        List<Integer> row = matrix.get(i);
-        row.set(j, row.get(j) - 1);
+    private void decrement(int fromIdx, int toIdx) {
+        List<Integer> row = matrix.get(fromIdx);
+        row.set(toIdx, row.get(toIdx) - 1);
     }
 
     /**
-     * Обнуляем всю строку
+     * Обнуляем всю строку rowIdx
      */
-    private void clearRow(int idx) {
-        List<Integer> row = matrix.get(idx);
-        for (int j = 0; j < row.size(); j++) {
-            row.set(j, 0);
+    private void clearRow(int rowIdx) {
+        List<Integer> row = matrix.get(rowIdx);
+        for (int colIdx = 0; colIdx < row.size(); colIdx++) {
+            row.set(colIdx, 0);
         }
     }
 
     /**
-     * Обнуляем весь столбец
+     * Обнуляем весь столбец colIdx
      */
-    private void clearColumn(int idx) {
-        for (List<Integer> column : matrix) {
-            column.set(idx, 0);
+    private void clearColumn(int colIdx) {
+        for (List<Integer> row : matrix) {
+            row.set(colIdx, 0);
         }
     }
 
     /**
-     * Создание нового индекса в матрице
+     * Расширяет матрицу на одну строку и один столбец, возвращает индекс
+     * новой вершины.
      */
     private int createNewIndex() {
-        int lenMatrix = matrix.size();
         int idx = matrix.size();
-        // новая строка из нулей
+
+        // новая строка из idx + 1 нулей
         List<Integer> newRow = new ArrayList<>();
-        for (int j = 0; j < lenMatrix + 1; j++) {
+        for (int colIdx = 0; colIdx <= idx; colIdx++) {
             newRow.add(0);
         }
         // в каждую существующую строку - новый столбец
@@ -93,26 +92,27 @@ public class GraphAdjacencyMatrix<T> implements Graph<T> {
         if (indexOf.containsKey(value)) {
             return;
         }
-        int idx;
+        int vertexIdx;
         if (!freeIndices.isEmpty()) {
-            idx = freeIndices.pop();
-            clearRow(idx);
-            clearColumn(idx);
-            vertexByIndex.set(idx, value);
+            // переиспользуем освободившийся индекс - обнуляем его строку и столбец
+            vertexIdx = freeIndices.pop();
+            clearRow(vertexIdx);
+            clearColumn(vertexIdx);
+            vertexByIndex.set(vertexIdx, value);
         } else {
-            idx = createNewIndex();
+            vertexIdx = createNewIndex();
             vertexByIndex.add(value);
         }
-        indexOf.put(value, idx);
+        indexOf.put(value, vertexIdx);
     }
 
     @Override
     public void delVertex(Vertex<T> value) {
         Integer idx = indexOf.get(value);
-        if (idx == 0) {
+        if (idx == null) {
             return;
         }
-
+        // удаляем все рёбра, инцидентные вершине
         clearRow(idx);
         clearColumn(idx);
 
@@ -133,11 +133,12 @@ public class GraphAdjacencyMatrix<T> implements Graph<T> {
         addVertex(from);
         addVertex(to);
 
-        int idx1 = indexOf.get(from);
-        int idx2 = indexOf.get(to);
-
-        increment(idx1, idx2);
-        increment(idx2, idx1);
+        int fromIdx = indexOf.get(from);
+        int toIdx = indexOf.get(to);
+        // Граф неориентированный: ребро инцидентно обеим вершинам,
+        // поэтому увеличиваем счётчик в обеих ячейках.
+        increment(fromIdx, toIdx);
+        increment(toIdx, fromIdx);
     }
 
     @Override
@@ -145,44 +146,59 @@ public class GraphAdjacencyMatrix<T> implements Graph<T> {
         Vertex<T> from = new Vertex<>(edge.from());
         Vertex<T> to = new Vertex<>(edge.to());
 
-        int idx1 = indexOf.get(from);
-        int idx2 = indexOf.get(to);
-
-        decrement(idx1, idx2);
-        decrement(idx2, idx1);
+        Integer fromIdx = indexOf.get(from);
+        Integer toIdx = indexOf.get(to);
+        if (fromIdx == null || toIdx == null) {
+            return;
+        }
+        if (matrix.get(fromIdx).get(toIdx) == 0) {
+            return;
+        }
+        decrement(fromIdx, toIdx);
+        decrement(toIdx, fromIdx);
     }
 
     @Override
     public boolean hasEdge(Edge<T> edge) {
         Vertex<T> from = new Vertex<>(edge.from());
         Vertex<T> to = new Vertex<>(edge.to());
-        Integer countEdge = matrix.get(indexOf.get(from)).get(indexOf.get(to));
-        return countEdge > 0;
+
+        Integer fromIdx = indexOf.get(from);
+        Integer toIdx = indexOf.get(to);
+        if (fromIdx == null || toIdx == null) {
+            return false;
+        }
+
+        return matrix.get(fromIdx).get(toIdx) > 0;
     }
 
     @Override
     public int countEdge() {
-        int sum = 0;
-        for (List<Integer> row : matrix) {
-            for (Integer cell : row) {
-                sum += cell;
+        // Считаем только верхний треугольник, чтобы каждое ребро
+        // посчитать один раз
+        int count = 0;
+        int n = matrix.size();
+        for (int i = 0; i < n; i++) {
+            List<Integer> row = matrix.get(i);
+            for (int j = i; j < n; j++) {
+                count += row.get(j);
             }
         }
-        return sum / 2;
+        return count;
     }
 
     @Override
     public List<Vertex<T>> getNeighbors(Vertex<T> curVertex) {
-        Integer idx = indexOf.get(curVertex);
-        if (idx == null) {
+        Integer vertexIdx = indexOf.get(curVertex);
+        if (vertexIdx == null) {
             return List.of();
         }
 
         List<Vertex<T>> neighbors = new ArrayList<>();
-        List<Integer> row = matrix.get(idx);
-        for (int i = 0; i < row.size(); ++i) {
-            if (row.get(i) > 0) {
-                neighbors.add(vertexByIndex.get(i));
+        List<Integer> row = matrix.get(vertexIdx);
+        for (int neighborIdx = 0; neighborIdx < row.size(); neighborIdx++) {
+            if (row.get(neighborIdx) > 0) {
+                neighbors.add(vertexByIndex.get(neighborIdx));
             }
         }
         return neighbors;

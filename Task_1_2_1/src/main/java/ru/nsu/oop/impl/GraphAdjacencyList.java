@@ -7,12 +7,16 @@ import ru.nsu.oop.graph.Vertex;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Реализация хранения графа в списке смежности.
  */
 public class GraphAdjacencyList<T> implements Graph<T> {
-    private final HashMap<Vertex<T>, List<Vertex<T>>> curGraph = new HashMap<>();
+    /**
+     * Список смежности. Вершина -> её список соседей.
+     */
+    private final Map<Vertex<T>, List<Vertex<T>>> curGraph = new HashMap<>();
 
     @Override
     public void addVertex(Vertex<T> value) {
@@ -54,8 +58,14 @@ public class GraphAdjacencyList<T> implements Graph<T> {
         Vertex<T> from = new Vertex<>(edge.from());
         Vertex<T> to = new Vertex<>(edge.to());
 
-        delVertex(from);
-        delVertex(to);
+        List<Vertex<T>> fromNeighbors = curGraph.get(from);
+        List<Vertex<T>> toNeighbors = curGraph.get(to);
+        if (fromNeighbors == null || toNeighbors == null) {
+            return;
+        }
+
+        fromNeighbors.remove(to);
+        toNeighbors.remove(from);
     }
 
     @Override
@@ -77,7 +87,7 @@ public class GraphAdjacencyList<T> implements Graph<T> {
             count += neighbors.size();
         }
 
-        // так как в структуре хранится неориентированный граф, делим на два
+        // Так как в структуре хранится неориентированный граф, делим на два
         return count / 2;
     }
 
