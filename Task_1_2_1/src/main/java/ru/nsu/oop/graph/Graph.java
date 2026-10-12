@@ -1,7 +1,5 @@
 package ru.nsu.oop.graph;
 
-import java.util.List;
-
 /**
  * Интерфейс основных действия над графом.
  */
@@ -9,9 +7,9 @@ public interface Graph<T> {
 
     void addVertex(Vertex<T> value);
 
-    void delVertex(Vertex<T>  value);
+    void delVertex(Vertex<T> value);
 
-    boolean hasVertex(Vertex<T>  value);
+    boolean hasVertex(Vertex<T> value);
 
     void addEdge(Edge<T> edge);
 
@@ -24,6 +22,6 @@ public interface Graph<T> {
     /**
      * Получить всех соседей вершины.
      */
-    Iterable<Vertex<T>> getNeighbors(Vertex<T>  curVertex);
+    Iterable<Vertex<T>> getNeighbors(Vertex<T> curVertex);
 
 }

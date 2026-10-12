@@ -12,7 +12,7 @@ import java.util.List;
  * Реализация хранения графа в списке смежности.
  */
 public class GraphAdjacencyList<T> implements Graph<T> {
-    private HashMap<Vertex<T>, List<Vertex<T>>> curGraph = new HashMap<>();
+    private final HashMap<Vertex<T>, List<Vertex<T>>> curGraph = new HashMap<>();
 
     @Override
     public void addVertex(Vertex<T> value) {
@@ -73,7 +73,7 @@ public class GraphAdjacencyList<T> implements Graph<T> {
     @Override
     public int countEdge() {
         int count = 0;
-        for (List<Vertex<T>> neighbors: curGraph.values()) {
+        for (List<Vertex<T>> neighbors : curGraph.values()) {
             count += neighbors.size();
         }
 
@@ -89,6 +89,4 @@ public class GraphAdjacencyList<T> implements Graph<T> {
         }
         return neighbors;
     }
-
-
 }
