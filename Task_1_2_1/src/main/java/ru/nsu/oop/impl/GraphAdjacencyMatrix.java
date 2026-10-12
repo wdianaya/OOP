@@ -1,27 +1,26 @@
 package ru.nsu.oop.impl;
 
-import ru.nsu.oop.graph.AbstractGraph;
 import ru.nsu.oop.graph.Edge;
 import ru.nsu.oop.graph.Graph;
-
-import java.util.List;
+import ru.nsu.oop.graph.Vertex;
 
 /**
- * Реализация хранения графа в списке смежности.
+ * Реализация хранения графа в матрица смежности.
  */
-public class GraphAdjacencyMatrix<T> extends AbstractGraph<T> {
+public class GraphAdjacencyMatrix<T> implements Graph<T> {
+
     @Override
-    public void addVertex(T value) {
+    public void addVertex(Vertex<T> value) {
 
     }
 
     @Override
-    public void delVertex(T value) {
+    public void delVertex(Vertex<T> value) {
 
     }
 
     @Override
-    public boolean hasVertex(T value) {
+    public boolean hasVertex(Vertex<T> value) {
         return false;
     }
 
@@ -46,7 +45,7 @@ public class GraphAdjacencyMatrix<T> extends AbstractGraph<T> {
     }
 
     @Override
-    public List<Edge<T>> getNeighbors(T curVertex) {
-        return List.of();
+    public Iterable<Vertex<T>> getNeighbors(Vertex<T> curVertex) {
+        return null;
     }
 }

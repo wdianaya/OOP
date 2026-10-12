@@ -1,26 +1,28 @@
 package ru.nsu.oop.impl;
 
-import ru.nsu.oop.graph.AbstractGraph;
 import ru.nsu.oop.graph.Edge;
+import ru.nsu.oop.graph.Graph;
+import ru.nsu.oop.graph.Vertex;
 
 import java.util.List;
 
 /**
  * Реализация хранения графа в матрице инцидентности.
  */
-public class GraphIncidenceMatrix<T> extends AbstractGraph<T> {
+public class GraphIncidenceMatrix<T> implements Graph<T> {
+
     @Override
-    public void addVertex(T value) {
+    public void addVertex(Vertex<T> value) {
 
     }
 
     @Override
-    public void delVertex(T value) {
+    public void delVertex(Vertex<T> value) {
 
     }
 
     @Override
-    public boolean hasVertex(T value) {
+    public boolean hasVertex(Vertex<T> value) {
         return false;
     }
 
@@ -45,7 +47,7 @@ public class GraphIncidenceMatrix<T> extends AbstractGraph<T> {
     }
 
     @Override
-    public List<Edge<T>> getNeighbors(T curVertex) {
+    public Iterable<Vertex<T>> getNeighbors(Vertex<T> curVertex) {
         return List.of();
     }
 }
