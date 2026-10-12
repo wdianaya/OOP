@@ -1,9 +1,7 @@
 package ru.nsu.oop.graph;
 
 /**
- * Интерфейс ребра графа.
+ * Описание ребра графа.
  */
-public interface Edge<T> {
-    T from();
-    T to();
+public record Edge<V>(V from, V to) {
 }

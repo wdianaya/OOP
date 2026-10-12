@@ -6,11 +6,12 @@ import java.util.List;
  * Интерфейс основных действия над графом.
  */
 public interface Graph<T> {
-    void addVertex(T value);
 
-    void delVertex(T value);
+    void addVertex(Vertex<T> value);
 
-    boolean hasVertex(T value);
+    void delVertex(Vertex<T>  value);
+
+    boolean hasVertex(Vertex<T>  value);
 
     void addEdge(Edge<T> edge);
 
@@ -23,14 +24,6 @@ public interface Graph<T> {
     /**
      * Получить всех соседей вершины.
      */
-    List<Edge<T>> getNeighbors(T curVertex);
+    Iterable<Vertex<T>> getNeighbors(Vertex<T>  curVertex);
 
-    @Override
-    boolean equals(Object value);
-
-    @Override
-    int hashCode();
-
-    @Override
-    String toString();
 }
