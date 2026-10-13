@@ -31,7 +31,6 @@ public class GraphAdjacencyMatrix<T> implements Graph<T> {
      * Преимущественно нужно для получения соседей вершины
      */
     private final List<Vertex<T>> vertexByIndex = new ArrayList<>();
-
     /**
      * Увеличивает счётчик рёбер fromIdx -> toIdx на 1.
      */
@@ -39,7 +38,6 @@ public class GraphAdjacencyMatrix<T> implements Graph<T> {
         List<Integer> row = matrix.get(fromIdx);
         row.set(toIdx, row.get(toIdx) + 1);
     }
-
     /**
      * Уменьшает счётчик рёбер fromIdx -> toIdx на 1.
      */
@@ -47,7 +45,6 @@ public class GraphAdjacencyMatrix<T> implements Graph<T> {
         List<Integer> row = matrix.get(fromIdx);
         row.set(toIdx, row.get(toIdx) - 1);
     }
-
     /**
      * Обнуляем всю строку rowIdx
      */
@@ -57,7 +54,6 @@ public class GraphAdjacencyMatrix<T> implements Graph<T> {
             row.set(colIdx, 0);
         }
     }
-
     /**
      * Обнуляем весь столбец colIdx
      */
@@ -66,7 +62,6 @@ public class GraphAdjacencyMatrix<T> implements Graph<T> {
             row.set(colIdx, 0);
         }
     }
-
     /**
      * Расширяет матрицу на одну строку и один столбец, возвращает индекс
      * новой вершины.
@@ -135,10 +130,8 @@ public class GraphAdjacencyMatrix<T> implements Graph<T> {
 
         int fromIdx = indexOf.get(from);
         int toIdx = indexOf.get(to);
-        // Граф неориентированный: ребро инцидентно обеим вершинам,
-        // поэтому увеличиваем счётчик в обеих ячейках.
+
         increment(fromIdx, toIdx);
-        increment(toIdx, fromIdx);
     }
 
     @Override
@@ -155,7 +148,6 @@ public class GraphAdjacencyMatrix<T> implements Graph<T> {
             return;
         }
         decrement(fromIdx, toIdx);
-        decrement(toIdx, fromIdx);
     }
 
     @Override
@@ -174,13 +166,11 @@ public class GraphAdjacencyMatrix<T> implements Graph<T> {
 
     @Override
     public int countEdge() {
-        // Считаем только верхний треугольник, чтобы каждое ребро
-        // посчитать один раз
         int count = 0;
         int n = matrix.size();
         for (int i = 0; i < n; i++) {
             List<Integer> row = matrix.get(i);
-            for (int j = i; j < n; j++) {
+            for (int j = 0; j < n; j++) {
                 count += row.get(j);
             }
         }
@@ -202,5 +192,30 @@ public class GraphAdjacencyMatrix<T> implements Graph<T> {
             }
         }
         return neighbors;
+    }
+
+    @Override
+    public Iterable<Vertex<T>> vertices() {
+        return indexOf.keySet();
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder string = new StringBuilder("   ");
+        int sizeMatrix = matrix.size();
+        for (int col = 0; col < sizeMatrix; ++col) {
+            string.append("v%d ".formatted(col+1));
+        }
+        string.append('\n');
+        for (int row = 0; row < sizeMatrix; ++row) {
+            string.append("v%d ".formatted(row+1));
+            List<Integer> curRow = matrix.get((int) row);
+            for (Integer elem: curRow) {
+                string.append(elem);
+                string.append("  ");
+            }
+            string.append('\n');
+        }
+        return string.toString();
     }
 }

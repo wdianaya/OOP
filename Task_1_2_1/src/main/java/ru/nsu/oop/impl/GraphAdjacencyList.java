@@ -50,7 +50,7 @@ public class GraphAdjacencyList<T> implements Graph<T> {
         Vertex<T> to = new Vertex<>(edge.to());
 
         curGraph.computeIfAbsent(from, k -> new ArrayList<>()).add(to);
-        curGraph.computeIfAbsent(to, k -> new ArrayList<>()).add(from);
+        curGraph.computeIfAbsent(to, k -> new ArrayList<>());
     }
 
     @Override
@@ -74,10 +74,7 @@ public class GraphAdjacencyList<T> implements Graph<T> {
         Vertex<T> to = new Vertex<>(edge.to());
         List<Vertex<T>> neighbors = curGraph.get(from);
 
-        if (neighbors != null && neighbors.contains(to)) {
-            return true;
-        }
-        return false;
+        return neighbors != null && neighbors.contains(to);
     }
 
     @Override
@@ -86,9 +83,7 @@ public class GraphAdjacencyList<T> implements Graph<T> {
         for (List<Vertex<T>> neighbors : curGraph.values()) {
             count += neighbors.size();
         }
-
-        // Так как в структуре хранится неориентированный граф, делим на два
-        return count / 2;
+        return count;
     }
 
     @Override
@@ -98,5 +93,27 @@ public class GraphAdjacencyList<T> implements Graph<T> {
             return List.of();
         }
         return neighbors;
+    }
+
+    @Override
+    public Iterable<Vertex<T>> vertices() {
+        return curGraph.keySet();
+    }
+
+    @Override
+    public String toString() {
+        var string = new StringBuilder();
+        var curVertex = 0;
+        for (var key: curGraph.keySet()) {
+            string.append("v%d  %s: ".formatted(++curVertex, key.vertex()));
+            var neighbors = curGraph.get(key);
+            for (var val: neighbors) {
+                string.append(val.vertex());
+                string.append(", ");
+            }
+            string.append('\n');
+        }
+
+        return string.toString();
     }
 }

@@ -29,21 +29,13 @@ public class GraphIncidenceMatrix<T> implements Graph<T> {
     private final Map<Vertex<T>, Integer> indexOf = new HashMap<>();
 
     /**
-     * Удаляет столбец e из матрицы и списка рёбер.
+     * Удаляет столбец e изs матрицы и списка рёбер.
      */
     private void removeEdgeColumn(int edgeIdx) {
         for (List<Integer> row : matrix) {
             row.remove((int) edgeIdx);
         }
         edgeByIndex.remove((int) edgeIdx);
-    }
-
-    /**
-     * Увеличивает на 1 счётчик инцидентности вершины vertexIdx ребру edgeIdx
-     */
-    private void increment(int vertexIdx, int edgeIdx) {
-        List<Integer> row = matrix.get(vertexIdx);
-        row.set(edgeIdx, row.get(edgeIdx) + 1);
     }
 
     /**
@@ -69,8 +61,8 @@ public class GraphIncidenceMatrix<T> implements Graph<T> {
             newRaw.add(0);
         }
         vertexByIndex.add(value);
+        indexOf.put(value, matrix.size());
         matrix.add(newRaw);
-        indexOf.put(value, matrix.size() - 1);
     }
 
     @Override
@@ -106,21 +98,25 @@ public class GraphIncidenceMatrix<T> implements Graph<T> {
         Vertex<T> from = new Vertex<>(edge.from());
         Vertex<T> to = new Vertex<>(edge.to());
 
-        addVertex(from);
-        addVertex(to);
-
         int newEdgeIdx = edgeByIndex.size();
         edgeByIndex.add(edge);
         for (List<Integer> row : matrix) {
             row.add(0);
         }
+        // Если петля -> сохраняем в ячейку число 2
+        if (from.equals(to)) {
+            addVertex(from);
+            int fromIdx = indexOf.get(from);
+            matrix.get(fromIdx).set(newEdgeIdx, 2);
+        } else { // Иначе обычное ребро
+            addVertex(from);
+            addVertex(to);
+            int fromIdx = indexOf.get(from);
+            int toIdx = indexOf.get(to);
 
-        // Граф неориентированный- ребро инцидентно обеим вершинам,
-        // поэтому отмечаем его в обеих строках
-        int fromIdx = indexOf.get(from);
-        int toIdx = indexOf.get(to);
-        increment(fromIdx, newEdgeIdx);
-        increment(toIdx, newEdgeIdx);
+            matrix.get(fromIdx).set(newEdgeIdx, 1);
+            matrix.get(toIdx).set(newEdgeIdx, -1);
+        }
     }
 
     @Override
@@ -135,9 +131,10 @@ public class GraphIncidenceMatrix<T> implements Graph<T> {
         List<Integer> rowFrom = matrix.get(fromIdx);
         List<Integer> rowTo = matrix.get(toIdx);
         for (int edgeIdx = 0; edgeIdx < edgeByIndex.size(); edgeIdx++) {
-            if (rowFrom.get(edgeIdx) != 0 && rowTo.get(edgeIdx) != 0) {
+            if ((rowFrom.get(edgeIdx) == 1 && rowTo.get(edgeIdx) == -1)
+                || rowFrom.get(edgeIdx) == 2) {
                 removeEdgeColumn(edgeIdx);
-                return; // Удаляем одно ребро, первое встречное
+                return;
             }
         }
     }
@@ -154,7 +151,8 @@ public class GraphIncidenceMatrix<T> implements Graph<T> {
         List<Integer> rowFrom = matrix.get(fromIdx);
         List<Integer> rowTo = matrix.get(toIdx);
         for (int edgeIdx = 0; edgeIdx < edgeByIndex.size(); edgeIdx++) {
-            if (rowFrom.get(edgeIdx) != 0 && rowTo.get(edgeIdx) != 0) {
+            if ((rowFrom.get(edgeIdx) == 1 && rowTo.get(edgeIdx) == -1)
+                    || rowFrom.get(edgeIdx) == 2) {
                 return true;
             }
         }
@@ -177,16 +175,41 @@ public class GraphIncidenceMatrix<T> implements Graph<T> {
         Set<Vertex<T>> neighbors = new LinkedHashSet<>();
         List<Integer> row = matrix.get(idx);
         for (int edgeIdx = 0; edgeIdx < row.size(); edgeIdx++) {
-            if (row.get(edgeIdx) != 0) {
+            if (row.get(edgeIdx) == 1) {
                 Edge<T> curEdge = edgeByIndex.get(edgeIdx);
-                // curVertex может быть как from, так и to, поэтому
-                // рассматриваем оба случая
-                T other = curEdge.from().equals(curVertex.vertex())
-                        ? curEdge.to()
-                        : curEdge.from();
-                neighbors.add(new Vertex<>(other));
+                neighbors.add(new Vertex<>(curEdge.to()));
             }
         }
         return new ArrayList<>(neighbors);
+    }
+
+    @Override
+    public Iterable<Vertex<T>> vertices() {
+        return indexOf.keySet();
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder string = new StringBuilder("   ");
+        for (int idxEdge = 0; idxEdge < edgeByIndex.size(); ++idxEdge) {
+            string.append("e%d ".formatted(idxEdge+1));
+
+        }
+        string.append('\n');
+
+        for (int idxVertex = 0; idxVertex < matrix.size(); ++idxVertex) {
+            string.append("v%d ".formatted(idxVertex+1));
+            List<Integer> rowVertex = matrix.get((int) idxVertex);
+            for (Integer elem: rowVertex) {
+                string.append(elem);
+                if (elem.equals(-1)) {
+                    string.append(" ");
+                } else {
+                    string.append("  ");
+                }
+            }
+            string.append('\n');
+        }
+        return string.toString();
     }
 }
