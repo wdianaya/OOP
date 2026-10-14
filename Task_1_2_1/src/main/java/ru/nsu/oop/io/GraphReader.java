@@ -1,9 +1,9 @@
 package ru.nsu.oop.io;
 
-import ru.nsu.oop.graph.Graph;
-
 import java.io.IOException;
 import java.io.Reader;
+
+import ru.nsu.oop.graph.Graph;
 
 /**
  * Читает граф из источника.

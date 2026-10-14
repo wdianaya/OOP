@@ -1,9 +1,8 @@
 package ru.nsu.oop.sort;
 
+import java.util.List;
 
 import ru.nsu.oop.graph.Graph;
-
-import java.util.List;
 
 /**
  * Интерфейс топологической сортировки.

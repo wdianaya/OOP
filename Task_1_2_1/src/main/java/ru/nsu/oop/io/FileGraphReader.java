@@ -13,7 +13,7 @@ import java.util.List;
 
 /**
  * Читает граф из текстового файла фиксированного формата.
- *
+ * <p>
  * Формат:
  * N - число вершин
  * u1 v1 - ребро (u1, v1)
@@ -22,7 +22,7 @@ import java.util.List;
  * Вершины нумеруются целыми числами. Пустые строки игнорируются.
  *
  */
-public class FileGraphReader implements GraphReader<Integer>{
+public class FileGraphReader implements GraphReader<Integer> {
 
     @Override
     public void read(Reader source, Graph<Integer> target) throws IOException {
@@ -59,7 +59,7 @@ public class FileGraphReader implements GraphReader<Integer>{
     private List<Integer> parseTokens(String line) throws IOException {
         List<Integer> tokens = new ArrayList<>();
         StringBuilder token = new StringBuilder();
-        for (int i = 0; i < line.length();++i) {
+        for (int i = 0; i < line.length(); ++i) {
             char symbol = line.charAt(i);
             if (Character.isWhitespace(symbol)) {
                 if (token.length() > 0) {

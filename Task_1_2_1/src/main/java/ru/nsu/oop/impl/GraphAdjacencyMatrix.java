@@ -1,10 +1,15 @@
 package ru.nsu.oop.impl;
 
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Deque;
+import java.util.List;
+import java.util.Map;
+
 import ru.nsu.oop.graph.Edge;
 import ru.nsu.oop.graph.Graph;
 import ru.nsu.oop.graph.Vertex;
-
-import java.util.*;
 
 /**
  * Реализация хранения графа в матрица смежности.
@@ -31,6 +36,7 @@ public class GraphAdjacencyMatrix<T> implements Graph<T> {
      * Преимущественно нужно для получения соседей вершины
      */
     private final List<Vertex<T>> vertexByIndex = new ArrayList<>();
+
     /**
      * Увеличивает счётчик рёбер fromIdx -> toIdx на 1.
      */
@@ -38,6 +44,7 @@ public class GraphAdjacencyMatrix<T> implements Graph<T> {
         List<Integer> row = matrix.get(fromIdx);
         row.set(toIdx, row.get(toIdx) + 1);
     }
+
     /**
      * Уменьшает счётчик рёбер fromIdx -> toIdx на 1.
      */
@@ -45,6 +52,7 @@ public class GraphAdjacencyMatrix<T> implements Graph<T> {
         List<Integer> row = matrix.get(fromIdx);
         row.set(toIdx, row.get(toIdx) - 1);
     }
+
     /**
      * Обнуляем всю строку rowIdx
      */
@@ -54,6 +62,7 @@ public class GraphAdjacencyMatrix<T> implements Graph<T> {
             row.set(colIdx, 0);
         }
     }
+
     /**
      * Обнуляем весь столбец colIdx
      */
@@ -62,6 +71,7 @@ public class GraphAdjacencyMatrix<T> implements Graph<T> {
             row.set(colIdx, 0);
         }
     }
+
     /**
      * Расширяет матрицу на одну строку и один столбец, возвращает индекс
      * новой вершины.
@@ -204,13 +214,13 @@ public class GraphAdjacencyMatrix<T> implements Graph<T> {
         StringBuilder string = new StringBuilder("   ");
         int sizeMatrix = matrix.size();
         for (int col = 0; col < sizeMatrix; ++col) {
-            string.append("v%d ".formatted(col+1));
+            string.append("v%d ".formatted(col + 1));
         }
         string.append('\n');
         for (int row = 0; row < sizeMatrix; ++row) {
-            string.append("v%d ".formatted(row+1));
+            string.append("v%d ".formatted(row + 1));
             List<Integer> curRow = matrix.get((int) row);
-            for (Integer elem: curRow) {
+            for (Integer elem : curRow) {
                 string.append(elem);
                 string.append("  ");
             }

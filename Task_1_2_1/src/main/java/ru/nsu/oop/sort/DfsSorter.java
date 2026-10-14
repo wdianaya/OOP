@@ -1,9 +1,9 @@
 package ru.nsu.oop.sort;
 
+import java.util.*;
+
 import ru.nsu.oop.graph.Graph;
 import ru.nsu.oop.graph.Vertex;
-
-import java.util.*;
 
 /**
  * Алгоритм топологической сортиорвки через поиск в глубину.

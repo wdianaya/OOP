@@ -132,7 +132,7 @@ public class GraphIncidenceMatrix<T> implements Graph<T> {
         List<Integer> rowTo = matrix.get(toIdx);
         for (int edgeIdx = 0; edgeIdx < edgeByIndex.size(); edgeIdx++) {
             if ((rowFrom.get(edgeIdx) == 1 && rowTo.get(edgeIdx) == -1)
-                || rowFrom.get(edgeIdx) == 2) {
+                    || rowFrom.get(edgeIdx) == 2) {
                 removeEdgeColumn(edgeIdx);
                 return;
             }
@@ -192,15 +192,15 @@ public class GraphIncidenceMatrix<T> implements Graph<T> {
     public String toString() {
         StringBuilder string = new StringBuilder("   ");
         for (int idxEdge = 0; idxEdge < edgeByIndex.size(); ++idxEdge) {
-            string.append("e%d ".formatted(idxEdge+1));
+            string.append("e%d ".formatted(idxEdge + 1));
 
         }
         string.append('\n');
 
         for (int idxVertex = 0; idxVertex < matrix.size(); ++idxVertex) {
-            string.append("v%d ".formatted(idxVertex+1));
+            string.append("v%d ".formatted(idxVertex + 1));
             List<Integer> rowVertex = matrix.get((int) idxVertex);
-            for (Integer elem: rowVertex) {
+            for (Integer elem : rowVertex) {
                 string.append(elem);
                 if (elem.equals(-1)) {
                     string.append(" ");

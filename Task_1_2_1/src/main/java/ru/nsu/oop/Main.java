@@ -2,7 +2,6 @@ package ru.nsu.oop;
 
 import ru.nsu.oop.graph.Edge;
 import ru.nsu.oop.graph.Graph;
-import ru.nsu.oop.graph.Vertex;
 import ru.nsu.oop.impl.GraphAdjacencyList;
 import ru.nsu.oop.impl.GraphAdjacencyMatrix;
 import ru.nsu.oop.impl.GraphIncidenceMatrix;
@@ -17,10 +16,10 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.nio.charset.StandardCharsets;
-import java.sql.SQLOutput;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+/**
+ * Main класс.
+ */
 public class Main {
     public static void main(String[] args) {
         //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
