@@ -1,19 +1,18 @@
 package ru.nsu.oop.io;
 
-import ru.nsu.oop.graph.Edge;
-import ru.nsu.oop.graph.Graph;
-import ru.nsu.oop.graph.Vertex;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.Reader;
 import java.util.ArrayList;
 import java.util.List;
 
+import ru.nsu.oop.graph.Edge;
+import ru.nsu.oop.graph.Graph;
+import ru.nsu.oop.graph.Vertex;
+
 
 /**
  * Читает граф из текстового файла фиксированного формата.
- * <p>
  * Формат:
  * N - число вершин
  * u1 v1 - ребро (u1, v1)

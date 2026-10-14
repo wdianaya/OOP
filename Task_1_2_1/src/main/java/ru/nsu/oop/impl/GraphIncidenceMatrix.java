@@ -1,11 +1,15 @@
 package ru.nsu.oop.impl;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
 import ru.nsu.oop.graph.Edge;
 import ru.nsu.oop.graph.Graph;
 import ru.nsu.oop.graph.Vertex;
-
-import java.util.*;
-
 /**
  * Реализация хранения графа в матрице инцидентности.
  */
