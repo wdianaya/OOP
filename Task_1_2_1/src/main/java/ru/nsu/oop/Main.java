@@ -1,6 +1,5 @@
 package ru.nsu.oop;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
@@ -62,9 +61,9 @@ public class Main {
                 TopologySort<Integer> sortGraph = new DfsSorter<>();
                 System.out.println(sortGraph.sort(graph4));
             } catch (GraphCycleException e) {
-                throw new RuntimeException(e);
+                throw new Exception(e);
             }
-        } catch (IOException e) {
+        } catch (Exception e) {
             System.err.println("Ошибка: " + e.getMessage());
         }
     }
