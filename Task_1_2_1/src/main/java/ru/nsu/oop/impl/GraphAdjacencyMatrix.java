@@ -36,61 +36,6 @@ public class GraphAdjacencyMatrix<T> implements Graph<T> {
      */
     private final List<Vertex<T>> vertexByIndex = new ArrayList<>();
 
-    /**
-     * Увеличивает счётчик рёбер fromIdx -> toIdx на 1.
-     */
-    private void increment(int fromIdx, int toIdx) {
-        List<Integer> row = matrix.get(fromIdx);
-        row.set(toIdx, row.get(toIdx) + 1);
-    }
-
-    /**
-     * Уменьшает счётчик рёбер fromIdx -> toIdx на 1.
-     */
-    private void decrement(int fromIdx, int toIdx) {
-        List<Integer> row = matrix.get(fromIdx);
-        row.set(toIdx, row.get(toIdx) - 1);
-    }
-
-    /**
-     * Обнуляем всю строку rowIdx.
-     */
-    private void clearRow(int rowIdx) {
-        List<Integer> row = matrix.get(rowIdx);
-        for (int colIdx = 0; colIdx < row.size(); colIdx++) {
-            row.set(colIdx, 0);
-        }
-    }
-
-    /**
-     * Обнуляем весь столбец colIdx.
-     */
-    private void clearColumn(int colIdx) {
-        for (List<Integer> row : matrix) {
-            row.set(colIdx, 0);
-        }
-    }
-
-    /**
-     * Расширяет матрицу на одну строку и один столбец, возвращает индекс
-     * новой вершины.
-     */
-    private int createNewIndex() {
-        int idx = matrix.size();
-
-        // новая строка из idx + 1 нулей
-        List<Integer> newRow = new ArrayList<>();
-        for (int colIdx = 0; colIdx <= idx; colIdx++) {
-            newRow.add(0);
-        }
-        // в каждую существующую строку - новый столбец
-        for (List<Integer> row : matrix) {
-            row.add(0);
-        }
-        matrix.add(newRow);
-        return idx;
-    }
-
     @Override
     public void addVertex(Vertex<T> value) {
         if (indexOf.containsKey(value)) {
@@ -226,5 +171,60 @@ public class GraphAdjacencyMatrix<T> implements Graph<T> {
             string.append('\n');
         }
         return string.toString();
+    }
+
+    /**
+     * Увеличивает счётчик рёбер fromIdx -> toIdx на 1.
+     */
+    private void increment(int fromIdx, int toIdx) {
+        List<Integer> row = matrix.get(fromIdx);
+        row.set(toIdx, row.get(toIdx) + 1);
+    }
+
+    /**
+     * Уменьшает счётчик рёбер fromIdx -> toIdx на 1.
+     */
+    private void decrement(int fromIdx, int toIdx) {
+        List<Integer> row = matrix.get(fromIdx);
+        row.set(toIdx, row.get(toIdx) - 1);
+    }
+
+    /**
+     * Обнуляем всю строку rowIdx.
+     */
+    private void clearRow(int rowIdx) {
+        List<Integer> row = matrix.get(rowIdx);
+        for (int colIdx = 0; colIdx < row.size(); colIdx++) {
+            row.set(colIdx, 0);
+        }
+    }
+
+    /**
+     * Обнуляем весь столбец colIdx.
+     */
+    private void clearColumn(int colIdx) {
+        for (List<Integer> row : matrix) {
+            row.set(colIdx, 0);
+        }
+    }
+
+    /**
+     * Расширяет матрицу на одну строку и один столбец, возвращает индекс
+     * новой вершины.
+     */
+    private int createNewIndex() {
+        int idx = matrix.size();
+
+        // новая строка из idx + 1 нулей
+        List<Integer> newRow = new ArrayList<>();
+        for (int colIdx = 0; colIdx <= idx; colIdx++) {
+            newRow.add(0);
+        }
+        // в каждую существующую строку - новый столбец
+        for (List<Integer> row : matrix) {
+            row.add(0);
+        }
+        matrix.add(newRow);
+        return idx;
     }
 }

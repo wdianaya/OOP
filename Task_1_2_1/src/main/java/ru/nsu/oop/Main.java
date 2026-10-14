@@ -1,5 +1,10 @@
 package ru.nsu.oop;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.nio.charset.StandardCharsets;
 import ru.nsu.oop.graph.Edge;
 import ru.nsu.oop.graph.Graph;
 import ru.nsu.oop.impl.GraphAdjacencyList;
@@ -10,11 +15,6 @@ import ru.nsu.oop.io.GraphReader;
 import ru.nsu.oop.sort.DfsSorter;
 import ru.nsu.oop.sort.GraphCycleException;
 import ru.nsu.oop.sort.TopologySort;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
-import java.nio.charset.StandardCharsets;
 
 /**
  * Запускает тестовые выводы, чтобы показать

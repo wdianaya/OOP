@@ -21,7 +21,6 @@ import ru.nsu.oop.graph.Vertex;
  *
  */
 public class FileGraphReader implements GraphReader<Integer> {
-
     @Override
     public void read(Reader source, Graph<Integer> target) throws IOException {
         try (BufferedReader reader = new BufferedReader(source)) {

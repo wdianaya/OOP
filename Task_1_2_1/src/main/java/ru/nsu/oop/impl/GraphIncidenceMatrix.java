@@ -32,28 +32,6 @@ public class GraphIncidenceMatrix<T> implements Graph<T> {
      */
     private final Map<Vertex<T>, Integer> indexOf = new HashMap<>();
 
-    /**
-     * Удаляет столбец e изs матрицы и списка рёбер.
-     */
-    private void removeEdgeColumn(int edgeIdx) {
-        for (List<Integer> row : matrix) {
-            row.remove((int) edgeIdx);
-        }
-        edgeByIndex.remove((int) edgeIdx);
-    }
-
-    /**
-     * Пересчитывает индексы в indexOf после удаления строки deletedVertexIdx:
-     * у всех вершин, которые были ниже, индекс уменьшился на 1.
-     */
-    private void updateIdxOfVertex(int deletedVertexIdx) {
-        int lenVertex = vertexByIndex.size();
-        for (int vertexIdx = deletedVertexIdx; vertexIdx < lenVertex; ++vertexIdx) {
-            Vertex<T> curVertex = vertexByIndex.get(vertexIdx);
-            indexOf.put(curVertex, vertexIdx);
-        }
-    }
-
     @Override
     public void addVertex(Vertex<T> value) {
         if (indexOf.containsKey(value)) {
@@ -215,5 +193,27 @@ public class GraphIncidenceMatrix<T> implements Graph<T> {
             string.append('\n');
         }
         return string.toString();
+    }
+
+    /**
+     * Удаляет столбец e изs матрицы и списка рёбер.
+     */
+    private void removeEdgeColumn(int edgeIdx) {
+        for (List<Integer> row : matrix) {
+            row.remove((int) edgeIdx);
+        }
+        edgeByIndex.remove((int) edgeIdx);
+    }
+
+    /**
+     * Пересчитывает индексы в indexOf после удаления строки deletedVertexIdx:
+     * у всех вершин, которые были ниже, индекс уменьшился на 1.
+     */
+    private void updateIdxOfVertex(int deletedVertexIdx) {
+        int lenVertex = vertexByIndex.size();
+        for (int vertexIdx = deletedVertexIdx; vertexIdx < lenVertex; ++vertexIdx) {
+            Vertex<T> curVertex = vertexByIndex.get(vertexIdx);
+            indexOf.put(curVertex, vertexIdx);
+        }
     }
 }

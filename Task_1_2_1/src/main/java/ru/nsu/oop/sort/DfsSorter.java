@@ -13,26 +13,6 @@ import ru.nsu.oop.graph.Vertex;
  */
 public class DfsSorter<T> implements TopologySort<T> {
     /**
-     * Реализация поиска в глубину.
-     */
-    private void dfs(Vertex<T> vertex, Map<Vertex<T>, DfsColors> vertexColor,
-                     List<T> result, Graph<T> curGraph) throws GraphCycleException {
-        vertexColor.put(vertex, DfsColors.GRAY);
-        List<Vertex<T>> neighbors = (List<Vertex<T>>) curGraph.getNeighbors(vertex);
-        for (Vertex<T> eachVertex : neighbors) {
-            if (vertexColor.get(eachVertex).equals(DfsColors.GRAY)) {
-                throw new GraphCycleException("Graph has cycle");
-            }
-            if (vertexColor.get(eachVertex).equals(DfsColors.WHITE)) {
-                dfs(eachVertex, vertexColor, result, curGraph);
-            }
-        }
-
-        vertexColor.put(vertex, DfsColors.BLACK);
-        result.add(vertex.vertex());
-    }
-
-    /**
      * Вызов dfs и вывод результата топологической сортировки.
      */
     @Override
@@ -59,5 +39,25 @@ public class DfsSorter<T> implements TopologySort<T> {
         }
         Collections.reverse(result);
         return result;
+    }
+
+    /**
+     * Реализация поиска в глубину.
+     */
+    private void dfs(Vertex<T> vertex, Map<Vertex<T>, DfsColors> vertexColor,
+                     List<T> result, Graph<T> curGraph) throws GraphCycleException {
+        vertexColor.put(vertex, DfsColors.GRAY);
+        List<Vertex<T>> neighbors = (List<Vertex<T>>) curGraph.getNeighbors(vertex);
+        for (Vertex<T> eachVertex : neighbors) {
+            if (vertexColor.get(eachVertex).equals(DfsColors.GRAY)) {
+                throw new GraphCycleException("Graph has cycle");
+            }
+            if (vertexColor.get(eachVertex).equals(DfsColors.WHITE)) {
+                dfs(eachVertex, vertexColor, result, curGraph);
+            }
+        }
+
+        vertexColor.put(vertex, DfsColors.BLACK);
+        result.add(vertex.vertex());
     }
 }
