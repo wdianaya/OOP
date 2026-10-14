@@ -6,10 +6,10 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
 import ru.nsu.oop.graph.Edge;
 import ru.nsu.oop.graph.Graph;
 import ru.nsu.oop.graph.Vertex;
+
 /**
  * Реализация хранения графа в матрице инцидентности.
  */
@@ -20,15 +20,15 @@ public class GraphIncidenceMatrix<T> implements Graph<T> {
      */
     private final List<List<Integer>> matrix = new ArrayList<>();
     /**
-     * Хранит вершины, их индекс - индекс строки в матрице
+     * Хранит вершины, их индекс - индекс строки в матрице.
      */
     private final List<Vertex<T>> vertexByIndex = new ArrayList<>();
     /**
-     * Хранит ребра, их индекс - индекс столбца в матрице
+     * Хранит ребра, их индекс - индекс столбца в матрице.
      */
     private final List<Edge<T>> edgeByIndex = new ArrayList<>();
     /**
-     * Хранит информацию о том, по какому индексу лежит вершина
+     * Хранит информацию о том, по какому индексу лежит вершина.
      */
     private final Map<Vertex<T>, Integer> indexOf = new HashMap<>();
 

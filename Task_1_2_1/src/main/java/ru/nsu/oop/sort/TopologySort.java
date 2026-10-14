@@ -1,7 +1,6 @@
 package ru.nsu.oop.sort;
 
 import java.util.List;
-
 import ru.nsu.oop.graph.Graph;
 
 /**

@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.io.Reader;
 import java.util.ArrayList;
 import java.util.List;
-
 import ru.nsu.oop.graph.Edge;
 import ru.nsu.oop.graph.Graph;
 import ru.nsu.oop.graph.Vertex;
@@ -47,7 +46,9 @@ public class FileGraphReader implements GraphReader<Integer> {
                 }
 
                 if (tokens.size() != 2) {
-                    throw new IOException("Некорректное количество аргементов на строке:" + lineNumber);
+                    throw new IOException("Некорректное количество"
+                            + " аргементов на строке:"
+                            + lineNumber);
                 }
 
                 target.addEdge(new Edge<>(tokens.get(0), tokens.get(1)));

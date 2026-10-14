@@ -2,11 +2,10 @@ package ru.nsu.oop.impl;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Deque;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import ru.nsu.oop.graph.Edge;
 import ru.nsu.oop.graph.Graph;
 import ru.nsu.oop.graph.Vertex;
@@ -23,17 +22,17 @@ public class GraphAdjacencyMatrix<T> implements Graph<T> {
      * Пул свободных индексов.
      * Очередь для хранения индексов удалённых элементов,
      * чтобы не перестраивать при удалении заново матрицу,
-     * а новый при добавлении элемент ставить по индексу одного из удалённых
+     * а новый при добавлении элемент ставить по индексу одного из удалённых.
      */
     private final Deque<Integer> freeIndices = new ArrayDeque<>();
     /**
-     * Хранит информацию о том, по какому индексу лежит вершина
+     * Хранит информацию о том, по какому индексу лежит вершина.
      */
     private final Map<Vertex<T>, Integer> indexOf = new HashMap<>();
     /**
-     * Хранит под индексом вершину:
+     * Хранит под индексом вершину.
      * индекс=индекс в матрице нужной вершины.
-     * Преимущественно нужно для получения соседей вершины
+     * Преимущественно нужно для получения соседей вершины.
      */
     private final List<Vertex<T>> vertexByIndex = new ArrayList<>();
 
@@ -54,7 +53,7 @@ public class GraphAdjacencyMatrix<T> implements Graph<T> {
     }
 
     /**
-     * Обнуляем всю строку rowIdx
+     * Обнуляем всю строку rowIdx.
      */
     private void clearRow(int rowIdx) {
         List<Integer> row = matrix.get(rowIdx);
@@ -64,7 +63,7 @@ public class GraphAdjacencyMatrix<T> implements Graph<T> {
     }
 
     /**
-     * Обнуляем весь столбец colIdx
+     * Обнуляем весь столбец colIdx.
      */
     private void clearColumn(int colIdx) {
         for (List<Integer> row : matrix) {

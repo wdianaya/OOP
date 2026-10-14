@@ -2,7 +2,6 @@ package ru.nsu.oop.io;
 
 import java.io.IOException;
 import java.io.Reader;
-
 import ru.nsu.oop.graph.Graph;
 
 /**

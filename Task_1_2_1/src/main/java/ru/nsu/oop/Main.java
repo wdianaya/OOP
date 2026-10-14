@@ -10,7 +10,6 @@ import ru.nsu.oop.io.GraphReader;
 import ru.nsu.oop.sort.DfsSorter;
 import ru.nsu.oop.sort.GraphCycleException;
 import ru.nsu.oop.sort.TopologySort;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -18,40 +17,36 @@ import java.io.Reader;
 import java.nio.charset.StandardCharsets;
 
 /**
- * Main класс.
+ * Запускает тестовые выводы, чтобы показать
+ * работоспособность программы.
  */
 public class Main {
+    /**
+     * Вызывает 3 способа хранения матрицы,
+     * читает граф из файла и сортирует его.
+     */
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        Graph<Integer> graph1 = new GraphAdjacencyList<>();
-        Graph<Integer> graph2 = new GraphAdjacencyMatrix<>();
-        Graph<Integer> graph3 = new GraphIncidenceMatrix<>();
-
         System.out.println("Матрица инцидентности");
+        Graph<Integer> graph3 = new GraphIncidenceMatrix<>();
         graph3.addEdge(new Edge<>(1, 1));
         graph3.addEdge(new Edge<>(1, 2));
-        graph3.addEdge(new Edge<>(2, 4));
-        graph3.addEdge(new Edge<>(4, 2));
-        graph3.addEdge(new Edge<>(3, 4));
-        graph3.addEdge(new Edge<>(1, 3));
-        System.out.println(graph3.toString());
+        graph3.addEdge(new Edge<>(2, 3));
+        graph3.addEdge(new Edge<>(3, 2));
+        System.out.println(graph3);
 
         System.out.println("Матрица смежности");
+        Graph<Integer> graph2 = new GraphAdjacencyMatrix<>();
         graph2.addEdge(new Edge<>(1, 1));
         graph2.addEdge(new Edge<>(1, 2));
-        graph2.addEdge(new Edge<>(2, 4));
-
-
-        System.out.println(graph2.toString());
+        graph2.addEdge(new Edge<>(2, 3));
+        System.out.println(graph2);
 
         System.out.println("Связный список");
+        Graph<Integer> graph1 = new GraphAdjacencyList<>();
         graph1.addEdge(new Edge<>(1, 1));
         graph1.addEdge(new Edge<>(1, 2));
-        graph1.addEdge(new Edge<>(2, 4));
-
-
-        System.out.println(graph1.toString());
+        graph1.addEdge(new Edge<>(2, 3));
+        System.out.println(graph1);
 
         System.out.println("Чтение графа из файла и вывод его топологической сортировки.");
         GraphReader<Integer> reader = new FileGraphReader();
@@ -72,6 +67,5 @@ public class Main {
         } catch (IOException e) {
             System.err.println("Ошибка: " + e.getMessage());
         }
-
     }
 }
