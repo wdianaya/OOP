@@ -48,7 +48,7 @@ public class GraphIncidenceMatrix<T> implements Graph<T> {
     }
 
     @Override
-    public void delVertex(Vertex<T> value) {
+    public void deleteVertex(Vertex<T> value) {
         Integer idx = indexOf.get(value);
         if (idx == null) {
             return;
@@ -102,7 +102,7 @@ public class GraphIncidenceMatrix<T> implements Graph<T> {
     }
 
     @Override
-    public void delEdge(Edge<T> curEdge) {
+    public void deleteEdge(Edge<T> curEdge) {
         Vertex<T> from = new Vertex<>(curEdge.from());
         Vertex<T> to = new Vertex<>(curEdge.to());
         Integer fromIdx = indexOf.get(from);

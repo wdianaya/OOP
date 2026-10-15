@@ -22,7 +22,7 @@ public interface Graph<T> {
      *
      * @param value удаляемая вершина
      */
-    void delVertex(Vertex<T> value);
+    void deleteVertex(Vertex<T> value);
 
     /**
      * Проверяет, есть ли вершина в графе.
@@ -46,7 +46,7 @@ public interface Graph<T> {
      *
      * @param edge удаляемое ребро
      */
-    void delEdge(Edge<T> edge);
+    void deleteEdge(Edge<T> edge);
 
     /**
      * Проверяет, есть ли ребро между вершинами.

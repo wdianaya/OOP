@@ -25,7 +25,7 @@ public class GraphAdjacencyList<T> implements Graph<T> {
     }
 
     @Override
-    public void delVertex(Vertex<T> value) {
+    public void deleteVertex(Vertex<T> value) {
         if (hasVertex(value)) {
             List<Vertex<T>> child = curGraph.get(value);
             for (Vertex<T> neighbor : child) {
@@ -53,7 +53,7 @@ public class GraphAdjacencyList<T> implements Graph<T> {
     }
 
     @Override
-    public void delEdge(Edge<T> edge) {
+    public void deleteEdge(Edge<T> edge) {
         Vertex<T> from = new Vertex<>(edge.from());
         Vertex<T> to = new Vertex<>(edge.to());
 

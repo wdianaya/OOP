@@ -56,7 +56,7 @@ public class GraphAdjacencyMatrix<T> implements Graph<T> {
     }
 
     @Override
-    public void delVertex(Vertex<T> value) {
+    public void deleteVertex(Vertex<T> value) {
         Integer idx = indexOf.get(value);
         if (idx == null) {
             return;
@@ -89,7 +89,7 @@ public class GraphAdjacencyMatrix<T> implements Graph<T> {
     }
 
     @Override
-    public void delEdge(Edge<T> edge) {
+    public void deleteEdge(Edge<T> edge) {
         Vertex<T> from = new Vertex<>(edge.from());
         Vertex<T> to = new Vertex<>(edge.to());
 
