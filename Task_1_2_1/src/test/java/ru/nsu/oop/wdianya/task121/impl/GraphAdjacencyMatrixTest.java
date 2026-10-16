@@ -80,4 +80,10 @@ class GraphAdjacencyMatrixTest {
         List<Vertex<Integer>> expected = List.of(new Vertex<>(1));
         assertEquals(expected, result);
     }
+
+    @Test
+    void toStringTest() {
+        Graph<Integer> graph = new GraphAdjacencyMatrix<>();
+        assertEquals("   \n", graph.toString());
+    }
 }
