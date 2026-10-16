@@ -1,4 +1,4 @@
-package ru.nsu.oop.sort;
+package ru.nsu.oop.wdianya.task121.sort.topsort.dfs;
 
 /**
  * Константы для поиска в глубину.

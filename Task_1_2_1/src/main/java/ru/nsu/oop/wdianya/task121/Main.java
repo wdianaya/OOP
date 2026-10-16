@@ -1,19 +1,19 @@
-package ru.nsu.oop;
+package ru.nsu.oop.wdianya.task121;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.nio.charset.StandardCharsets;
-import ru.nsu.oop.graph.Edge;
-import ru.nsu.oop.graph.Graph;
-import ru.nsu.oop.impl.GraphAdjacencyList;
-import ru.nsu.oop.impl.GraphAdjacencyMatrix;
-import ru.nsu.oop.impl.GraphIncidenceMatrix;
-import ru.nsu.oop.io.FileGraphReader;
-import ru.nsu.oop.io.GraphReader;
-import ru.nsu.oop.sort.DfsSorter;
-import ru.nsu.oop.sort.GraphCycleException;
-import ru.nsu.oop.sort.TopologySort;
+import ru.nsu.oop.wdianya.task121.graph.Edge;
+import ru.nsu.oop.wdianya.task121.graph.Graph;
+import ru.nsu.oop.wdianya.task121.impl.GraphAdjacencyList;
+import ru.nsu.oop.wdianya.task121.impl.GraphAdjacencyMatrix;
+import ru.nsu.oop.wdianya.task121.impl.GraphIncidenceMatrix;
+import ru.nsu.oop.wdianya.task121.io.FileGraphReader;
+import ru.nsu.oop.wdianya.task121.io.GraphReader;
+import ru.nsu.oop.wdianya.task121.sort.topsort.dfs.DfsSorter;
+import ru.nsu.oop.wdianya.task121.sort.exceptions.GraphCycleException;
+import ru.nsu.oop.wdianya.task121.sort.topsort.TopologySort;
 
 /**
  * Запускает тестовые выводы, чтобы показать

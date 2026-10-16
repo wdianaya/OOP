@@ -1,13 +1,13 @@
-package ru.nsu.oop.io;
+package ru.nsu.oop.wdianya.task121.io;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.Reader;
 import java.util.ArrayList;
 import java.util.List;
-import ru.nsu.oop.graph.Edge;
-import ru.nsu.oop.graph.Graph;
-import ru.nsu.oop.graph.Vertex;
+import ru.nsu.oop.wdianya.task121.graph.Edge;
+import ru.nsu.oop.wdianya.task121.graph.Graph;
+import ru.nsu.oop.wdianya.task121.graph.Vertex;
 
 
 /**

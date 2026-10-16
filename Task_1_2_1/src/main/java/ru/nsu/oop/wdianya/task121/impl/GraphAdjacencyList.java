@@ -1,12 +1,12 @@
-package ru.nsu.oop.impl;
+package ru.nsu.oop.wdianya.task121.impl;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import ru.nsu.oop.graph.Edge;
-import ru.nsu.oop.graph.Graph;
-import ru.nsu.oop.graph.Vertex;
+import ru.nsu.oop.wdianya.task121.graph.Edge;
+import ru.nsu.oop.wdianya.task121.graph.Graph;
+import ru.nsu.oop.wdianya.task121.graph.Vertex;
 
 /**
  * Реализация хранения графа в списке смежности.
@@ -101,18 +101,18 @@ public class GraphAdjacencyList<T> implements Graph<T> {
 
     @Override
     public String toString() {
-        var string = new StringBuilder();
+        var resultString = new StringBuilder();
         var curVertex = 0;
         for (var key : curGraph.keySet()) {
-            string.append("v%d  %s: ".formatted(++curVertex, key.vertex()));
+            resultString.append("v%d  %s: ".formatted(++curVertex, key.vertex()));
             var neighbors = curGraph.get(key);
-            for (var val : neighbors) {
-                string.append(val.vertex());
-                string.append(", ");
+            for (var value : neighbors) {
+                resultString.append(value.vertex());
+                resultString.append(", ");
             }
-            string.append('\n');
+            resultString.append('\n');
         }
 
-        return string.toString();
+        return resultString.toString();
     }
 }

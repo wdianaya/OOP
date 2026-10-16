@@ -1,4 +1,4 @@
-package ru.nsu.oop.impl;
+package ru.nsu.oop.wdianya.task121.impl;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
@@ -6,9 +6,9 @@ import java.util.Deque;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import ru.nsu.oop.graph.Edge;
-import ru.nsu.oop.graph.Graph;
-import ru.nsu.oop.graph.Vertex;
+import ru.nsu.oop.wdianya.task121.graph.Edge;
+import ru.nsu.oop.wdianya.task121.graph.Graph;
+import ru.nsu.oop.wdianya.task121.graph.Vertex;
 
 /**
  * Реализация хранения графа в матрица смежности.
@@ -155,22 +155,22 @@ public class GraphAdjacencyMatrix<T> implements Graph<T> {
 
     @Override
     public String toString() {
-        StringBuilder string = new StringBuilder("   ");
+        var resultString = new StringBuilder("   ");
         int sizeMatrix = matrix.size();
         for (int col = 0; col < sizeMatrix; ++col) {
-            string.append("v%d ".formatted(col + 1));
+            resultString.append("v%d ".formatted(col + 1));
         }
-        string.append('\n');
+        resultString.append('\n');
         for (int row = 0; row < sizeMatrix; ++row) {
-            string.append("v%d ".formatted(row + 1));
+            resultString.append("v%d ".formatted(row + 1));
             List<Integer> curRow = matrix.get((int) row);
             for (Integer elem : curRow) {
-                string.append(elem);
-                string.append("  ");
+                resultString.append(elem);
+                resultString.append("  ");
             }
-            string.append('\n');
+            resultString.append('\n');
         }
-        return string.toString();
+        return resultString.toString();
     }
 
     /**

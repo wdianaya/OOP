@@ -1,12 +1,14 @@
-package ru.nsu.oop.sort;
+package ru.nsu.oop.wdianya.task121.sort.topsort.dfs;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import ru.nsu.oop.graph.Graph;
-import ru.nsu.oop.graph.Vertex;
+import ru.nsu.oop.wdianya.task121.graph.Graph;
+import ru.nsu.oop.wdianya.task121.graph.Vertex;
+import ru.nsu.oop.wdianya.task121.sort.exceptions.GraphCycleException;
+import ru.nsu.oop.wdianya.task121.sort.topsort.TopologySort;
 
 /**
  * Алгоритм топологической сортиорвки через поиск в глубину.

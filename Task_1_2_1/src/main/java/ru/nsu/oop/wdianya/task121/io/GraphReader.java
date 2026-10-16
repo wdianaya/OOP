@@ -1,8 +1,8 @@
-package ru.nsu.oop.io;
+package ru.nsu.oop.wdianya.task121.io;
 
 import java.io.IOException;
 import java.io.Reader;
-import ru.nsu.oop.graph.Graph;
+import ru.nsu.oop.wdianya.task121.graph.Graph;
 
 /**
  * Читает граф из источника.

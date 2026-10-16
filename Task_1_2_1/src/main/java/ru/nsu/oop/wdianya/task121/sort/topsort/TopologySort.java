@@ -1,7 +1,8 @@
-package ru.nsu.oop.sort;
+package ru.nsu.oop.wdianya.task121.sort.topsort;
 
 import java.util.List;
-import ru.nsu.oop.graph.Graph;
+import ru.nsu.oop.wdianya.task121.graph.Graph;
+import ru.nsu.oop.wdianya.task121.sort.exceptions.GraphCycleException;
 
 /**
  * Интерфейс топологической сортировки.

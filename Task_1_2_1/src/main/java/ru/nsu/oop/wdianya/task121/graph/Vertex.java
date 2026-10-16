@@ -1,4 +1,4 @@
-package ru.nsu.oop.graph;
+package ru.nsu.oop.wdianya.task121.graph;
 
 /**
  * Описание вершины графа.
