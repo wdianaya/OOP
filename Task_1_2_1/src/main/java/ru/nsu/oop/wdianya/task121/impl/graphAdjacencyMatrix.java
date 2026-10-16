@@ -13,7 +13,7 @@ import ru.nsu.oop.wdianya.task121.graph.Vertex;
 /**
  * Реализация хранения графа в матрица смежности.
  */
-public class GraphAdjacencyMatrix<T> implements Graph<T> {
+public class graphAdjacencyMatrix<T> implements Graph<T> {
     /**
      * Матрица смежности. matrix[i][j] — число рёбер между i и j.
      */

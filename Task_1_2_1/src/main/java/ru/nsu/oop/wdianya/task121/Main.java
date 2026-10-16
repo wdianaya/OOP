@@ -7,7 +7,7 @@ import java.nio.charset.StandardCharsets;
 import ru.nsu.oop.wdianya.task121.graph.Edge;
 import ru.nsu.oop.wdianya.task121.graph.Graph;
 import ru.nsu.oop.wdianya.task121.impl.GraphAdjacencyList;
-import ru.nsu.oop.wdianya.task121.impl.GraphAdjacencyMatrix;
+import ru.nsu.oop.wdianya.task121.impl.graphAdjacencyMatrix;
 import ru.nsu.oop.wdianya.task121.impl.GraphIncidenceMatrix;
 import ru.nsu.oop.wdianya.task121.io.FileGraphReader;
 import ru.nsu.oop.wdianya.task121.io.GraphReader;
@@ -34,7 +34,7 @@ public class Main {
         System.out.println(graph3);
 
         System.out.println("Матрица смежности");
-        Graph<Integer> graph2 = new GraphAdjacencyMatrix<>();
+        Graph<Integer> graph2 = new graphAdjacencyMatrix<>();
         graph2.addEdge(new Edge<>(1, 1));
         graph2.addEdge(new Edge<>(1, 2));
         graph2.addEdge(new Edge<>(2, 3));
@@ -49,8 +49,8 @@ public class Main {
 
         System.out.println("Чтение графа из файла и вывод его топологической сортировки.");
         GraphReader<Integer> reader = new FileGraphReader();
-        Graph<Integer> graph4 = new GraphAdjacencyMatrix<>();
-        try (InputStream in = Main.class.getResourceAsStream("/file.txt")) {
+        Graph<Integer> graph4 = new graphAdjacencyMatrix<>();
+        try (InputStream in = Main.class.getResourceAsStream("/testfiles/file.txt")) {
             if (in == null) {
                 System.err.println("Файл не найден");
                 return;
