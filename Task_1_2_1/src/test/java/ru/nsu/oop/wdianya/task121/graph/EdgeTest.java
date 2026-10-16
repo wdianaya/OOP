@@ -16,4 +16,9 @@ class EdgeTest {
     void to() {
         assertEquals(2, e1.to());
     }
+
+    @Test
+    void toStringTest() {
+        assertEquals("(1, 2)", e1.toString());
+    }
 }

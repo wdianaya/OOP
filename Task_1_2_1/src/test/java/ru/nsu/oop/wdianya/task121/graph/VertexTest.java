@@ -10,4 +10,9 @@ class VertexTest {
     void vertex() {
         assertEquals(1, v1.vertex());
     }
+
+    @Test
+    void toStringTest() {
+        assertEquals("1", v1.toString());
+    }
 }
