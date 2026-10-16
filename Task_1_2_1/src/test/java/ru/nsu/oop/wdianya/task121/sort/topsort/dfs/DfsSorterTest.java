@@ -1,9 +1,8 @@
 package ru.nsu.oop.wdianya.task121.sort.topsort.dfs;
 
 import org.junit.jupiter.api.Test;
-import ru.nsu.oop.wdianya.task121.Main;
 import ru.nsu.oop.wdianya.task121.graph.Graph;
-import ru.nsu.oop.wdianya.task121.impl.graphAdjacencyMatrix;
+import ru.nsu.oop.wdianya.task121.impl.GraphAdjacencyMatrix;
 import ru.nsu.oop.wdianya.task121.io.FileGraphReader;
 import ru.nsu.oop.wdianya.task121.io.GraphReader;
 import ru.nsu.oop.wdianya.task121.sort.exceptions.GraphCycleException;
@@ -22,7 +21,7 @@ class DfsSorterTest {
     @Test
     void sort() {
         GraphReader<Integer> reader = new FileGraphReader();
-        Graph<Integer> graph4 = new graphAdjacencyMatrix<>();
+        Graph<Integer> graph4 = new GraphAdjacencyMatrix<>();
         try (InputStream in = DfsSorter.class.getResourceAsStream("/testfiles/testFile1.txt")) {
             if (in == null) {
                 return;
