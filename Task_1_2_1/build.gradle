@@ -40,7 +40,7 @@ jacocoTestReport {
 
 jacocoTestCoverageVerification {
     afterEvaluate {
-        classDirectories.setFrom(files(classDirectories.files.collect {
+        classDirectories.setFroam(files(classDirectories.files.collect {
             fileTree(dir: it, exclude: [
                     '**/Main.class',
                     '**/Main$*.class'
