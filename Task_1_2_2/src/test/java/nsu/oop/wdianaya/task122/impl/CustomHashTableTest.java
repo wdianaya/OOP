@@ -1,19 +1,20 @@
 package nsu.oop.wdianaya.task122.impl;
 
-import org.junit.jupiter.api.Test;
-
-import java.util.Set;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.Set;
+
+import org.junit.jupiter.api.Test;
 
 import nsu.oop.wdianaya.task122.CustomMap;
 
 
 class CustomHashTableTest {
     CustomHashTable<Integer, String> table = new CustomHashTable<>();
+
     @Test
     void addValue() {
         table.addValue(1, "one");
