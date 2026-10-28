@@ -3,13 +3,16 @@ package nsu.oop.wdianaya.task122.impl;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.ConcurrentModificationException;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
 import nsu.oop.wdianaya.task122.CustomMap;
+import nsu.oop.wdianaya.task122.util.Constants;
 
 
 class CustomHashTableTest {
@@ -80,6 +83,40 @@ class CustomHashTableTest {
     @Test
     void testEquals() {
         assertTrue(table.equals(table));
+    }
+
+    @Test
+    void testResizeAndCollisions() {
+        for (int i = 0; i < 50; i++) {
+            table.addValue(i, "val" + i);
+        }
+
+        assertEquals(50, table.entrySet().size());
+        assertEquals("val49", table.getValue(49));
+        assertEquals("val0", table.getValue(0));
+
+        table.deleteValue(25);
+        assertNull(table.getValue(25));
+        assertEquals(49, table.entrySet().size());
+    }
+
+    @Test
+    void entrySetThrowsConcurrentModificationException() {
+        table.addValue(1, "one");
+        table.addValue(2, "two");
+        table.addValue(3, "three");
+
+        assertThrows(ConcurrentModificationException.class, () -> {
+            for (CustomMap.CustomEntry<Integer, String> entry : table.entrySet()) {
+                table.deleteValue(1);
+            }
+        });
+    }
+
+    @Test
+    void testConstants() {
+        assertEquals(0.75f, Constants.LOAD_FACTOR);
+        assertTrue(Constants.INITIAL_CAPACITY > 0);
     }
 
 }
