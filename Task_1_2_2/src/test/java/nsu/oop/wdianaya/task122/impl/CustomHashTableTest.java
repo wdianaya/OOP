@@ -9,11 +9,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.ConcurrentModificationException;
 import java.util.Set;
 
-import org.junit.jupiter.api.Test;
-
 import nsu.oop.wdianaya.task122.CustomMap;
 import nsu.oop.wdianaya.task122.util.Constants;
-
+import org.junit.jupiter.api.Test;
 
 class CustomHashTableTest {
     CustomHashTable<Integer, String> table = new CustomHashTable<>();
