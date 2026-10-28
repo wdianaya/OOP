@@ -2,6 +2,7 @@ package nsu.oop.wdianaya.task122.impl;
 
 import nsu.oop.wdianaya.task122.util.Constants;
 import nsu.oop.wdianaya.task122.CustomMap;
+import nsu.oop.wdianaya.task122.util.MurmurHash;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,27 +37,34 @@ public class CustomHashTable<K, V> implements CustomMap<K, V> {
 
         @Override
         public K getKey() {
-            return null;
+            return this.key;
         }
 
         @Override
         public V getValue() {
-            return null;
+            return this.value;
         }
     }
 
     @Override
     public void addValue(K key, V value) {
+        this.size++;
+        int currentHash = getIndex(key);
 
     }
 
     @Override
     public void deleteValue(K key) {
-
+        int index = getIndex(key);
+        if (table.get(index) != null) {
+            table.remove(table.get(index));
+        }
     }
 
     @Override
     public V getValue(K key) {
+        int index = getIndex(key);
+        table.remove(table.get(index));
         return null;
     }
 
@@ -83,5 +91,13 @@ public class CustomHashTable<K, V> implements CustomMap<K, V> {
     @Override
     public boolean equals(Object otherTable) {
         return true;
+    }
+
+    private Integer getHash(K key) {
+        return MurmurHash.hash(key);
+    }
+
+    private Integer getIndex(K key) {
+        return getHash(key) % this.size;
     }
 }
