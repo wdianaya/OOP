@@ -1,5 +1,8 @@
 package nsu.oop.wdianaya.task122.util;
 
+/**
+ * Реализует функцию для хеширования.
+ */
 public final class MurmurHash {
     private static final int C1 = 0x85ebca6b;
     private static final int C2 = 0xc2b2ae35;
