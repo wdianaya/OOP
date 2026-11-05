@@ -1,1 +1,1 @@
-typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html","k":"18"},{"p":"nsu.oop.wdianaya.task131.io","l":"IOFileReader"},{"p":"nsu.oop.wdianaya.task131","l":"Main"},{"p":"nsu.oop.wdianaya.task131.substring","l":"SubstringSearch"}];updateSearchResults();
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html","k":"18"},{"p":"nsu.oop.wdianaya.task131.io","l":"IoFileReader"},{"p":"nsu.oop.wdianaya.task131","l":"Main"},{"p":"nsu.oop.wdianaya.task131.substring","l":"SubstringSearch"}];updateSearchResults();
