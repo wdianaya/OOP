@@ -10,7 +10,7 @@ import java.nio.file.Path;
 /**
  * Класс для открытия файловых потоков чтения.
  */
-public class IOFileReader {
+public class IoFileReader {
     /**
      * Открывает указанный файл для буферизованного чтения в кодировке UTF-8
      */

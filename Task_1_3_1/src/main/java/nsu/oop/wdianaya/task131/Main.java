@@ -9,6 +9,9 @@ import nsu.oop.wdianaya.task131.substring.SubstringSearch;
  * Класс, демонстриурющий работу программы.
  */
 public class Main {
+    /**
+     * Точка входа в программу.
+     */
     public static void main(String[] args) {
         String filename = "src/main/resources/input.txt";
         String substring = "бра";

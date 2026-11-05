@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.io.Reader;
 import java.util.ArrayList;
 import java.util.List;
-import nsu.oop.wdianaya.task131.io.IOFileReader;
+import nsu.oop.wdianaya.task131.io.IoFileReader;
 
 /**
  * Класс для поиска вхождений подтроки в файле и текстовых потоках.
@@ -19,10 +19,11 @@ public class SubstringSearch {
 
     /**
      * Выполняет поиск всех вхождений заданной подстроки в текстовом потоке.
+     *
      * @param reader    поток ввода {@link Reader}, из которого считываются символы
      * @param substring искомая подстрока в кодировке UTF-8
      * @return список индексов начальных позиций всех найденных вхождений;
-     * пустой список, если подстрока пуста или вхождения не найдены
+     *     пустой список, если подстрока пуста или вхождения не найдены
      */
     public static List<Integer> find(Reader reader, String substring) throws IOException {
         if (substring == null) {
@@ -68,7 +69,7 @@ public class SubstringSearch {
      * Перегрузка метода нужна преимущественно для удобства тестирования.
      */
     public static List<Integer> find(String fileName, String substring) throws IOException {
-        try (Reader source = IOFileReader.openReader(fileName)) {
+        try (Reader source = IoFileReader.openReader(fileName)) {
             return find(source, substring);
         }
     }
@@ -77,6 +78,7 @@ public class SubstringSearch {
      * Построение префикс-функции (массива) для данной подстроки.
      * Для каждого символа подстроки вычисляется, какова длина
      * самого длинного префикса, который одновременной является суффиксом этой подстроки.
+     *
      * @param substring искомая подстрока
      * @param len       длина подстроки
      * @return список значений префикс-функции длины {@code len}
