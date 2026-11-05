@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html","k":"18"},{"l":"nsu.oop.wdianaya.task131"},{"l":"nsu.oop.wdianaya.task131.io"},{"l":"nsu.oop.wdianaya.task131.substring"}];updateSearchResults();
