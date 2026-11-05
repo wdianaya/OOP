@@ -15,8 +15,8 @@ import nsu.oop.wdianaya.task122.util.MurmurHash;
  * Реализация хештаблицы.
  */
 public class CustomHashTable<K, V> implements CustomMap<K, V> {
-    public static final float LOAD_FACTOR = 0.75f;
-    public static final int INITIAL_CAPACITY = 16;
+    private static final float LOAD_FACTOR = 0.75f;
+    private static final int INITIAL_CAPACITY = 16;
     private List<Node<K, V>> table;
     private int modificationCount;
     private int size;
