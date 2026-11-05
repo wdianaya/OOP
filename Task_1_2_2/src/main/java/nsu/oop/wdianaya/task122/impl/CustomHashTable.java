@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
-import nsu.oop.wdianaya.task122.util.Constants;
 import nsu.oop.wdianaya.task122.CustomMap;
 import nsu.oop.wdianaya.task122.util.MurmurHash;
 
@@ -16,6 +15,8 @@ import nsu.oop.wdianaya.task122.util.MurmurHash;
  * Реализация хештаблицы.
  */
 public class CustomHashTable<K, V> implements CustomMap<K, V> {
+    public static final float LOAD_FACTOR = 0.75f;
+    public static final int INITIAL_CAPACITY = 16;
     private List<Node<K, V>> table;
     private int modificationCount;
     private int size;
@@ -24,8 +25,8 @@ public class CustomHashTable<K, V> implements CustomMap<K, V> {
      * Создает пустую хеш-таблицу с начальной емкостью по умолчанию.
      */
     public CustomHashTable() {
-        this.table = new ArrayList<>(Constants.INITIAL_CAPACITY);
-        for (int i = 0; i < Constants.INITIAL_CAPACITY; ++i) {
+        this.table = new ArrayList<>(INITIAL_CAPACITY);
+        for (int i = 0; i < INITIAL_CAPACITY; i++) {
             this.table.add(null);
         }
 
@@ -107,7 +108,7 @@ public class CustomHashTable<K, V> implements CustomMap<K, V> {
 
         size++;
         modificationCount++;
-        if (size >= table.size() * Constants.LOAD_FACTOR) {
+        if (size >= table.size() * LOAD_FACTOR) {
             resize();
         }
     }
@@ -276,7 +277,6 @@ public class CustomHashTable<K, V> implements CustomMap<K, V> {
         for (int i = 0; i < newCapacity; i++) {
             this.table.add(null);
         }
-
         this.size = 0;
 
         for (Node<K, V> head : oldTable) {

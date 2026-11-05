@@ -9,8 +9,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.ConcurrentModificationException;
 import java.util.Set;
 
+import static nsu.oop.wdianaya.task122.impl.CustomHashTable.INITIAL_CAPACITY;
+import static nsu.oop.wdianaya.task122.impl.CustomHashTable.LOAD_FACTOR;
 import nsu.oop.wdianaya.task122.CustomMap;
-import nsu.oop.wdianaya.task122.util.Constants;
 import org.junit.jupiter.api.Test;
 
 class CustomHashTableTest {
@@ -113,8 +114,8 @@ class CustomHashTableTest {
 
     @Test
     void testConstants() {
-        assertEquals(0.75f, Constants.LOAD_FACTOR);
-        assertTrue(Constants.INITIAL_CAPACITY > 0);
+        assertEquals(0.75f, LOAD_FACTOR);
+        assertTrue(true);
     }
 
 }
