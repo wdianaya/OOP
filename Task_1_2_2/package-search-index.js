@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"nsu.oop.wdianaya.task122"},{"l":"nsu.oop.wdianaya.task122.impl"},{"l":"nsu.oop.wdianaya.task122.util"}];updateSearchResults();
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html","k":"18"},{"l":"nsu.oop.wdianaya.task122"},{"l":"nsu.oop.wdianaya.task122.impl"},{"l":"nsu.oop.wdianaya.task122.util"}];updateSearchResults();
