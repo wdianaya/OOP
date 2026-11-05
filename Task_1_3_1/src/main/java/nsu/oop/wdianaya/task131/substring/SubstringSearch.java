@@ -1,11 +1,10 @@
 package nsu.oop.wdianaya.task131.substring;
 
-import nsu.oop.wdianaya.task131.io.IOFileReader;
-
 import java.io.IOException;
 import java.io.Reader;
 import java.util.ArrayList;
 import java.util.List;
+import nsu.oop.wdianaya.task131.io.IOFileReader;
 
 /**
  * Класс для поиска вхождений подтроки в файле и текстовых потоках.
