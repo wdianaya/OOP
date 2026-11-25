@@ -66,6 +66,8 @@ public class Main {
         System.out.println(petr);
         System.out.println("Перевод на бюджет (нет троек за экзамены): "
                 + petr.getGradeBook().canTransferToBudget());
+        System.out.printf("Средний балл: %.2f%n",
+                petr.getGradeBook().calculateAverageScore());
         System.out.println("Красный диплом: "
                 + petr.getGradeBook().isRedDiplomaPossible() + " (есть четверки)");
     }
