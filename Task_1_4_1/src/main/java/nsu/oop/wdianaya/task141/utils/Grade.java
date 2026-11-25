@@ -3,12 +3,11 @@ package nsu.oop.wdianaya.task141.utils;
 /**
  * Всевозмодные виды оценок.
  */
-public enum Grade {
+public enum Grade implements AcademicGrade{
     EXCELLENT("Отлично", 5),
     GOOD("Хорошо", 4),
     SATISFACTORY("Удовлетворительно", 3),
-    UNSATISFACTORY("Неудовлетворительно", 2),
-    PASS("Зачет", 0);
+    UNSATISFACTORY("Неудовлетворительно", 2);
 
     private final String title;
     private final int value;

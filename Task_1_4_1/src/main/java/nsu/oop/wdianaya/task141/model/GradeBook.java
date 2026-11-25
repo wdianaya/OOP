@@ -12,26 +12,26 @@ import nsu.oop.wdianaya.task141.service.impl.GradeBookService;
  * Хранит в мапе по номеру семестра (ключ) записи об оценках (значения).
  */
 public class GradeBook {
-    private Map<Integer, List<Record>> record;
+    private Map<Integer, List<GradeRecord>> records;
     private final GradeBookService service = new GradeBookService();
 
     public GradeBook() {
-        this.record = new HashMap<>();
+        this.records = new HashMap<>();
     }
 
     /**
      * Возвращает все записи об оценках, сгруппированные по номеру семестра.
      */
-    public Map<Integer, List<Record>> getRecord() {
-        return this.record;
+    public Map<Integer, List<GradeRecord>> getRecord() {
+        return this.records;
     }
 
     /**
      * Добавляет новую запись об оценке в указанный семестр.
      */
-    public void addRecord(int semester, Record record) {
-        this.record.putIfAbsent(semester, new ArrayList<>());
-        this.record.get(semester).add(record);
+    public void addRecord(int semester, GradeRecord gradeRecord) {
+        this.records.putIfAbsent(semester, new ArrayList<>());
+        this.records.get(semester).add(gradeRecord);
     }
 
     /**

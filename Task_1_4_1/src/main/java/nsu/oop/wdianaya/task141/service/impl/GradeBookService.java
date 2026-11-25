@@ -6,12 +6,14 @@ import java.util.List;
 import java.util.Map;
 
 import nsu.oop.wdianaya.task141.model.GradeBook;
-import nsu.oop.wdianaya.task141.model.Record;
+import nsu.oop.wdianaya.task141.model.GradeRecord;
 import nsu.oop.wdianaya.task141.service.AverageScoreCalculator;
 import nsu.oop.wdianaya.task141.service.BudgetTransferChecker;
 import nsu.oop.wdianaya.task141.service.IncreasedScholarshipChecker;
 import nsu.oop.wdianaya.task141.service.RedDiplomaPredictor;
+import nsu.oop.wdianaya.task141.utils.AcademicGrade;
 import nsu.oop.wdianaya.task141.utils.ControlType;
+import nsu.oop.wdianaya.task141.utils.CreditGrade;
 import nsu.oop.wdianaya.task141.utils.Grade;
 
 /**
@@ -23,33 +25,36 @@ public class GradeBookService implements
         BudgetTransferChecker,
         IncreasedScholarshipChecker,
         RedDiplomaPredictor {
+    private static final double PERCENTAGE_OF_EXCELLENT = 0.75;
+    private static final double NO_GRADES = 0.0;
+    private static final Integer TWO_SEMESTERS = 2;
 
     @Override
     public double calculateAverageScore(GradeBook gradeBook) {
         return gradeBook.getRecord().values().stream()
                 .flatMap(List::stream)
-                .map(Record::grade)
-                .filter(grade -> grade != Grade.PASS)
-                .mapToInt(Grade::getValue)
+                .map(GradeRecord::grade)
+                .filter(grade -> grade != CreditGrade.PASS && grade != CreditGrade.FAIL)
+                .mapToInt(AcademicGrade::getValue)
                 .average()
-                .orElse(0.0);
+                .orElse(NO_GRADES);
     }
 
     @Override
     public boolean canTransferToBudget(GradeBook gradeBook) {
-        Map<Integer, List<Record>> allRecords = gradeBook.getRecord();
+        Map<Integer, List<GradeRecord>> allRecords = gradeBook.getRecord();
         List<Integer> lastTwoSemesters = allRecords.keySet().stream()
                 .sorted(Comparator.reverseOrder())
-                .limit(2)
+                .limit(TWO_SEMESTERS)
                 .toList();
 
         boolean hasBadMarks = lastTwoSemesters.stream()
                 .flatMap(semester -> allRecords.getOrDefault(
                         semester,
                         Collections.emptyList()).stream())
-                .anyMatch(record ->
-                        record.type() == ControlType.EXAM
-                                && record.grade() == Grade.SATISFACTORY
+                .anyMatch(gradeRecord ->
+                        gradeRecord.type() == ControlType.EXAM
+                                && gradeRecord.grade() == Grade.SATISFACTORY
                 );
 
         return !hasBadMarks;
@@ -57,38 +62,38 @@ public class GradeBookService implements
 
     @Override
     public boolean isIncreasedScholarship(GradeBook gradeBook, Integer currentSemester) {
-        List<Record> currentRecords = gradeBook.getRecord().getOrDefault(
+        List<GradeRecord> currentGradeRecords = gradeBook.getRecord().getOrDefault(
                 currentSemester,
                 Collections.emptyList()
         );
 
-        return !currentRecords.isEmpty() && currentRecords.stream()
-                .allMatch(record -> record.grade() == Grade.EXCELLENT
-                        || record.grade() == Grade.PASS);
+        return !currentGradeRecords.isEmpty() && currentGradeRecords.stream()
+                .allMatch(gradeRecord -> gradeRecord.grade() == Grade.EXCELLENT
+                        || gradeRecord.grade() == CreditGrade.PASS);
     }
 
     @Override
     public boolean isRedDiplomaPossible(GradeBook gradeBook) {
-        Map<Integer, List<Record>> allRecords = gradeBook.getRecord();
+        Map<Integer, List<GradeRecord>> allRecords = gradeBook.getRecord();
 
         boolean isDefensePass = allRecords.values().stream()
                 .flatMap(List::stream)
-                .anyMatch(record -> record.type() == ControlType.THESIS_DEFENSE
-                        && record.grade() == Grade.EXCELLENT);
+                .anyMatch(gradeRecord -> gradeRecord.type() == ControlType.THESIS_DEFENSE
+                        && gradeRecord.grade() == Grade.EXCELLENT);
 
         boolean existSatisfactory = allRecords.values().stream()
                 .flatMap(List::stream)
-                .anyMatch(record -> record.grade() == Grade.SATISFACTORY);
+                .anyMatch(gradeRecord -> gradeRecord.grade() == Grade.SATISFACTORY);
 
         long totalGradedCount = allRecords.values().stream()
                 .flatMap(List::stream)
-                .map(Record::grade)
-                .filter(grade -> grade != Grade.PASS)
+                .map(GradeRecord::grade)
+                .filter(grade -> grade != CreditGrade.PASS)
                 .count();
 
         long excellentCount = allRecords.values().stream()
                 .flatMap(List::stream)
-                .map(Record::grade)
+                .map(GradeRecord::grade)
                 .filter(grade -> grade == Grade.EXCELLENT)
                 .count();
 
@@ -100,6 +105,6 @@ public class GradeBookService implements
 
         return isDefensePass
                 && !existSatisfactory
-                && (excellentPercentage >= 0.75);
+                && (excellentPercentage >= PERCENTAGE_OF_EXCELLENT);
     }
 }

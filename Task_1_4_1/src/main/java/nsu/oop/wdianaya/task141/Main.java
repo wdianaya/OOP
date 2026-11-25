@@ -1,8 +1,9 @@
 package nsu.oop.wdianaya.task141;
 
-import nsu.oop.wdianaya.task141.model.Record;
+import nsu.oop.wdianaya.task141.model.GradeRecord;
 import nsu.oop.wdianaya.task141.model.Student;
 import nsu.oop.wdianaya.task141.utils.ControlType;
+import nsu.oop.wdianaya.task141.utils.CreditGrade;
 import nsu.oop.wdianaya.task141.utils.Grade;
 import nsu.oop.wdianaya.task141.utils.StudyForm;
 
@@ -25,19 +26,19 @@ public class Main {
         Student ivan = new Student("Иванов Иван", StudyForm.BUDGET);
 
         ivan.getGradeBook().addRecord(1,
-                new Record("Математика", ControlType.EXAM, Grade.EXCELLENT));
+                new GradeRecord("Математика", ControlType.EXAM, Grade.EXCELLENT));
         ivan.getGradeBook().addRecord(1,
-                new Record("Физика", ControlType.DIFF_CREDIT, Grade.EXCELLENT));
+                new GradeRecord("Физика", ControlType.DIFF_CREDIT, Grade.EXCELLENT));
         ivan.getGradeBook().addRecord(1,
-                new Record("История", ControlType.CREDIT, Grade.PASS));
+                new GradeRecord("История", ControlType.CREDIT, CreditGrade.PASS));
 
         ivan.getGradeBook().addRecord(2,
-                new Record("Программирование", ControlType.EXAM, Grade.EXCELLENT));
+                new GradeRecord("Программирование", ControlType.EXAM, Grade.EXCELLENT));
         ivan.getGradeBook().addRecord(2,
-                new Record("Английский", ControlType.DIFF_CREDIT, Grade.EXCELLENT));
+                new GradeRecord("Английский", ControlType.DIFF_CREDIT, Grade.EXCELLENT));
 
         ivan.getGradeBook().addRecord(8,
-                new Record("Защита ВКР", ControlType.THESIS_DEFENSE, Grade.EXCELLENT));
+                new GradeRecord("Защита ВКР", ControlType.THESIS_DEFENSE, Grade.EXCELLENT));
 
         System.out.println(ivan);
         System.out.printf("Средний балл: %.2f%n",
@@ -54,14 +55,14 @@ public class Main {
         Student petr = new Student("Петров Петр", StudyForm.PAID);
 
         petr.getGradeBook().addRecord(1,
-                new Record("Математика", ControlType.EXAM, Grade.GOOD));
+                new GradeRecord("Математика", ControlType.EXAM, Grade.GOOD));
         petr.getGradeBook().addRecord(1,
-                new Record("Физика", ControlType.EXAM, Grade.EXCELLENT));
+                new GradeRecord("Физика", ControlType.EXAM, Grade.EXCELLENT));
 
         petr.getGradeBook().addRecord(2,
-                new Record("Программирование", ControlType.EXAM, Grade.EXCELLENT));
+                new GradeRecord("Программирование", ControlType.EXAM, Grade.EXCELLENT));
         petr.getGradeBook().addRecord(2,
-                new Record("История", ControlType.DIFF_CREDIT, Grade.SATISFACTORY));
+                new GradeRecord("История", ControlType.DIFF_CREDIT, Grade.SATISFACTORY));
 
         System.out.println(petr);
         System.out.println("Перевод на бюджет (нет троек за экзамены): "
