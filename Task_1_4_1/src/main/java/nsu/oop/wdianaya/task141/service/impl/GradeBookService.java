@@ -1,28 +1,28 @@
 package nsu.oop.wdianaya.task141.service.impl;
 
-import nsu.oop.wdianaya.task141.model.GradeBook;
-import nsu.oop.wdianaya.task141.model.Record;
-import nsu.oop.wdianaya.task141.service.IAverageScoreCalculator;
-import nsu.oop.wdianaya.task141.service.IBudgetTransferChecker;
-import nsu.oop.wdianaya.task141.service.IIncreasedScholarshipChecker;
-import nsu.oop.wdianaya.task141.service.IRedDiplomaPredictor;
-import nsu.oop.wdianaya.task141.utils.ControlType;
-import nsu.oop.wdianaya.task141.utils.Grade;
-
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+
+import nsu.oop.wdianaya.task141.model.GradeBook;
+import nsu.oop.wdianaya.task141.model.Record;
+import nsu.oop.wdianaya.task141.service.AverageScoreCalculator;
+import nsu.oop.wdianaya.task141.service.BudgetTransferChecker;
+import nsu.oop.wdianaya.task141.service.IncreasedScholarshipChecker;
+import nsu.oop.wdianaya.task141.service.RedDiplomaPredictor;
+import nsu.oop.wdianaya.task141.utils.ControlType;
+import nsu.oop.wdianaya.task141.utils.Grade;
 
 /**
  * Сервис для выполнения вычислений и проверок успеваемости студента
  * на основе данных его электронной зачетной книжки.
  */
 public class GradeBookService implements
-        IAverageScoreCalculator,
-        IBudgetTransferChecker,
-        IIncreasedScholarshipChecker,
-        IRedDiplomaPredictor {
+        AverageScoreCalculator,
+        BudgetTransferChecker,
+        IncreasedScholarshipChecker,
+        RedDiplomaPredictor {
 
     @Override
     public double calculateAverageScore(GradeBook gradeBook) {
@@ -48,8 +48,8 @@ public class GradeBookService implements
                         semester,
                         Collections.emptyList()).stream())
                 .anyMatch(record ->
-                        record.type() == ControlType.EXAM &&
-                                record.grade() == Grade.SATISFACTORY
+                        record.type() == ControlType.EXAM
+                                && record.grade() == Grade.SATISFACTORY
                 );
 
         return !hasBadMarks;

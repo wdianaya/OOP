@@ -5,7 +5,7 @@ import nsu.oop.wdianaya.task141.model.GradeBook;
 /**
  * Для прогнозирования возможности получения диплома с отличием.
  */
-public interface IRedDiplomaPredictor {
+public interface RedDiplomaPredictor {
     /**
      * Прогнозирует возможность получения красного диплома.
      */

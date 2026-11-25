@@ -6,7 +6,7 @@ import nsu.oop.wdianaya.task141.model.GradeBook;
  * Для проверки права на получение повышенной стипендии.
  */
 
-public interface IIncreasedScholarshipChecker {
+public interface IncreasedScholarshipChecker {
     /**
      * Проверяет возможность получения повышенной стипендии в текущем семестре.
      */

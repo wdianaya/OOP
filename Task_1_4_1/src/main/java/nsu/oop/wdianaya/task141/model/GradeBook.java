@@ -1,11 +1,11 @@
 package nsu.oop.wdianaya.task141.model;
 
-import nsu.oop.wdianaya.task141.service.impl.GradeBookService;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import nsu.oop.wdianaya.task141.service.impl.GradeBookService;
 
 /**
  * Представляет электронную зачетную книжку студента.

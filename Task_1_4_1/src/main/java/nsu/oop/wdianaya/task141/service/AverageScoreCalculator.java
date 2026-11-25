@@ -5,7 +5,7 @@ import nsu.oop.wdianaya.task141.model.GradeBook;
 /**
  * Для вычисления текущего среднего балла студента.
  */
-public interface IAverageScoreCalculator {
+public interface AverageScoreCalculator {
     /**
      * Вычисляет текущий средний балл за все время обучения.
      */

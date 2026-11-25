@@ -14,6 +14,7 @@ public enum ControlType {
     THESIS_DEFENSE("Защита ВКР");
 
     private final String title;
+
     ControlType(String title) {
         this.title = title;
     }

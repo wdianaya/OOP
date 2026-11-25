@@ -12,6 +12,9 @@ public class Student {
     private final GradeBook gradeBook;
     private StudyForm studyForm;
 
+    /**
+     * Создает нового студента с пустой зачетной книжкой.
+     */
     public Student(String fullName, StudyForm studyForm) {
         this.fullName = fullName;
         this.studyForm = studyForm;

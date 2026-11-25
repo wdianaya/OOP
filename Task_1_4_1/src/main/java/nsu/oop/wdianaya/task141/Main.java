@@ -1,7 +1,7 @@
 package nsu.oop.wdianaya.task141;
 
-import nsu.oop.wdianaya.task141.model.Student;
 import nsu.oop.wdianaya.task141.model.Record;
+import nsu.oop.wdianaya.task141.model.Student;
 import nsu.oop.wdianaya.task141.utils.ControlType;
 import nsu.oop.wdianaya.task141.utils.Grade;
 import nsu.oop.wdianaya.task141.utils.StudyForm;
