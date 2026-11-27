@@ -3,7 +3,7 @@ plugins {
     id 'jacoco'
 }
 
-group = 'org.example'
+group = 'ru.nsu.oop'
 version = '1.0-SNAPSHOT'
 
 repositories {
@@ -23,5 +23,25 @@ test {
 jacocoTestReport {
     reports {
         xml.required = true
+    }
+    afterEvaluate {
+        classDirectories.setFrom(files(classDirectories.files.collect {
+            fileTree(dir: it, exclude: [
+                    '**/Main.class',
+                    '**/Main$*.class',
+                    '**/GraphCycleException.class'
+            ])
+        }))
+    }
+}
+
+jacocoTestCoverageVerification {
+    afterEvaluate {
+        classDirectories.setFrom(files(classDirectories.files.collect {
+            fileTree(dir: it, exclude: [
+                    '**/Main.class',
+                    '**/Main$*.class'
+            ])
+        }))
     }
 }
