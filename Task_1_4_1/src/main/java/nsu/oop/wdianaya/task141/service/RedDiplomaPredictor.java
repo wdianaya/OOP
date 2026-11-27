@@ -9,5 +9,5 @@ public interface RedDiplomaPredictor {
     /**
      * Прогнозирует возможность получения красного диплома.
      */
-    public boolean isRedDiplomaPossible(GradeBook gradeBook);
+    boolean isRedDiplomaPossible(GradeBook gradeBook);
 }

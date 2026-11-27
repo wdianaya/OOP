@@ -1,6 +1,9 @@
 package nsu.oop.wdianaya.task141.utils;
 
-public enum CreditGrade implements AcademicGrade{
+/**
+ * Виды оценок для диф зачета.
+    */
+public enum CreditGrade implements AcademicGrade {
     PASS("Зачет", 0),
     FAIL("Не зачёт", 0);
 

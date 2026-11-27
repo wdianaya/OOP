@@ -12,7 +12,7 @@ import nsu.oop.wdianaya.task141.service.impl.GradeBookService;
  * Хранит в мапе по номеру семестра (ключ) записи об оценках (значения).
  */
 public class GradeBook {
-    private Map<Integer, List<GradeRecord>> records;
+    private final Map<Integer, List<GradeRecord>> records;
     private final GradeBookService service = new GradeBookService();
 
     public GradeBook() {

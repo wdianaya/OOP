@@ -10,5 +10,5 @@ public interface IncreasedScholarshipChecker {
     /**
      * Проверяет возможность получения повышенной стипендии в текущем семестре.
      */
-    public boolean isIncreasedScholarship(GradeBook gradeBook, Integer currentSemester);
+    boolean isIncreasedScholarship(GradeBook gradeBook, Integer currentSemester);
 }

@@ -1,5 +1,9 @@
 package nsu.oop.wdianaya.task141.service.impl;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import nsu.oop.wdianaya.task141.model.GradeBook;
 import nsu.oop.wdianaya.task141.model.GradeRecord;
 import nsu.oop.wdianaya.task141.utils.ControlType;
@@ -7,8 +11,6 @@ import nsu.oop.wdianaya.task141.utils.CreditGrade;
 import nsu.oop.wdianaya.task141.utils.Grade;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class GradeBookServiceTest {
     private GradeBookService service;

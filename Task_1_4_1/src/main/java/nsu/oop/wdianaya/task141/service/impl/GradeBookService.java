@@ -4,7 +4,6 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
-
 import nsu.oop.wdianaya.task141.model.GradeBook;
 import nsu.oop.wdianaya.task141.model.GradeRecord;
 import nsu.oop.wdianaya.task141.service.AverageScoreCalculator;

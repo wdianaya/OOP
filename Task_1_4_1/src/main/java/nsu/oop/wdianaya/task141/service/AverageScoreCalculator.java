@@ -9,5 +9,5 @@ public interface AverageScoreCalculator {
     /**
      * Вычисляет текущий средний балл за все время обучения.
      */
-    public double calculateAverageScore(GradeBook gradeBook);
+    double calculateAverageScore(GradeBook gradeBook);
 }

@@ -1,9 +1,9 @@
 package nsu.oop.wdianaya.task141.utils;
 
 /**
- * Всевозмодные виды оценок.
+ * Всевозмодные виды оценок для недиф зачета.
  */
-public enum Grade implements AcademicGrade{
+public enum Grade implements AcademicGrade {
     EXCELLENT("Отлично", 5),
     GOOD("Хорошо", 4),
     SATISFACTORY("Удовлетворительно", 3),
@@ -24,5 +24,4 @@ public enum Grade implements AcademicGrade{
     public int getValue() {
         return value;
     }
-
 }

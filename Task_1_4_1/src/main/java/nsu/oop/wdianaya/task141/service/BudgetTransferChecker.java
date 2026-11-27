@@ -9,5 +9,5 @@ public interface BudgetTransferChecker {
     /**
      * Проверяет возможность перевода с платной формы обучения на бюджетную.
      */
-    public boolean canTransferToBudget(GradeBook gradeBook);
+    boolean canTransferToBudget(GradeBook gradeBook);
 }
