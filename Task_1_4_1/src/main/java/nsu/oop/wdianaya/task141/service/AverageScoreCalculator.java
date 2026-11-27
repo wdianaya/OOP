@@ -1,0 +1,13 @@
+package nsu.oop.wdianaya.task141.service;
+
+import nsu.oop.wdianaya.task141.model.GradeBook;
+
+/**
+ * Для вычисления текущего среднего балла студента.
+ */
+public interface AverageScoreCalculator {
+    /**
+     * Вычисляет текущий средний балл за все время обучения.
+     */
+    double calculateAverageScore(GradeBook gradeBook);
+}
